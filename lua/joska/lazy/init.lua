@@ -4,5 +4,6 @@ return {
         name = "plenary"
     },
     "eandrju/cellular-automaton.nvim",
+    "theprimeagen/vim-be-good"
 }
 
