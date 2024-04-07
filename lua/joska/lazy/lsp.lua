@@ -11,6 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "tweekmonster/django-plus.vim",
     },
 
     config = function()
@@ -29,10 +30,11 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "tsserver",
+                "pylsp",
+                "ruff_lsp",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
@@ -47,6 +49,50 @@ return {
                                 diagnostics = {
                                     globals = { "vim", "it", "describe", "before_each", "after_each" },
                                 }
+                            }
+                        }
+                    }
+                end,
+
+                ["pylsp"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.pylsp.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            pylsp = {
+                                plugins = {
+                                    autopep8 = {
+                                        enabled = false
+                                    },
+                                    pycodestyle = {
+                                        enabled = false,
+                                    },
+                                }
+                            }
+                        }
+                    }
+                end,
+
+                ["ruff_lsp"] = function()
+                    local lspconfig = require("lspconfig")
+                    local util = require('lspconfig.util')
+                    lspconfig.ruff_lsp.setup {
+                        capabilities = capabilities,
+                        single_file_support = false,
+                        root_dir = function(fname)
+                            local root_files = {
+                                'pyproject.toml',
+                                'setup.py',
+                                'setup.cfg',
+                                'requirements.txt',
+                                'Pipfile',
+                                'ruff.toml',
+                            }
+                            return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+                        end,
+                        init_options = {
+                            settings = {
+                                args = {},
                             }
                         }
                     }
