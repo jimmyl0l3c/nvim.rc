@@ -30,7 +30,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "tsserver",
-                "pylsp",
+                "jedi_language_server",
                 "ruff_lsp",
             },
             handlers = {
@@ -54,23 +54,12 @@ return {
                     }
                 end,
 
-                ["pylsp"] = function()
+                ["jedi_language_server"] = function ()
                     local lspconfig = require("lspconfig")
-                    lspconfig.pylsp.setup {
+                    lspconfig.jedi_language_server.setup({
                         capabilities = capabilities,
-                        settings = {
-                            pylsp = {
-                                plugins = {
-                                    autopep8 = {
-                                        enabled = false
-                                    },
-                                    pycodestyle = {
-                                        enabled = false,
-                                    },
-                                }
-                            }
-                        }
-                    }
+                        settings = {}
+                    })
                 end,
 
                 ["ruff_lsp"] = function()

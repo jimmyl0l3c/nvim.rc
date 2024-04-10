@@ -1,5 +1,5 @@
 $ruff_cfg_dir = "~\AppData\Roaming\ruff"
-$pylsp_venv_path = "~\AppData\Local\nvim-data\mason\packages\python-lsp-server\venv"
+# $pylsp_venv_path = "~\AppData\Local\nvim-data\mason\packages\python-lsp-server\venv"
 
 Function exitOnErr {
     If ($LASTEXITCODE -ne 0) {
@@ -27,7 +27,8 @@ Write-Output "Copying default ruff.toml"
 Copy-Item ruff.toml $ruff_cfg_dir
 exitOnErr
 
-Write-Output "Installing additional packages to pylsp venv"
-& "$pylsp_venv_path\Scripts\pip.exe" install -r pylsp-requirements.txt
-exitOnErr
+# Replaced pylsp with jedi_language_server
+# Write-Output "Installing additional packages to pylsp venv"
+# & "$pylsp_venv_path\Scripts\pip.exe" install -r pylsp-requirements.txt
+# exitOnErr
 
