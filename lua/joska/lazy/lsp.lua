@@ -26,6 +26,7 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
         "tweekmonster/django-plus.vim",
+        "artemave/workspace-diagnostics.nvim",
     },
 
     config = function()
@@ -39,6 +40,8 @@ return {
 
         require("fidget").setup({})
         require("mason").setup()
+
+        local workspace_diagnostics = require("workspace-diagnostics")
 
         -- InstallFormatters()
 
@@ -55,38 +58,42 @@ return {
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
+                    require("lspconfig")[server_name].setup({
+                        capabilities = capabilities,
+                        on_attach = workspace_diagnostics.populate_workspace_diagnostics,
+                    })
                 end,
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
+                    lspconfig.lua_ls.setup({
                         capabilities = capabilities,
+                        on_attach = workspace_diagnostics.populate_workspace_diagnostics,
                         settings = {
                             Lua = {
                                 diagnostics = {
                                     globals = { "vim", "it", "describe", "before_each", "after_each" },
                                 }
                             }
-                        }
-                    }
+                        },
+                    })
                 end,
 
                 ["jedi_language_server"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.jedi_language_server.setup({
                         capabilities = capabilities,
-                        settings = {}
+                        on_attach = workspace_diagnostics.populate_workspace_diagnostics,
+                        settings = {},
                     })
                 end,
 
                 ["ruff_lsp"] = function()
                     local lspconfig = require("lspconfig")
                     local util = require('lspconfig.util')
-                    lspconfig.ruff_lsp.setup {
+                    lspconfig.ruff_lsp.setup({
                         capabilities = capabilities,
+                        on_attach = workspace_diagnostics.populate_workspace_diagnostics,
                         single_file_support = false,
                         root_dir = function(fname)
                             local root_files = {
@@ -103,13 +110,13 @@ return {
                             settings = {
                                 args = {},
                             }
-                        }
-                    }
+                        },
+                    })
                 end,
                 ["angularls"] = function()
                     local lspconfig = require("lspconfig")
                     local util = require('lspconfig.util')
-                    lspconfig.angularls.setup {
+                    lspconfig.angularls.setup({
                         capabilities = capabilities,
                         root_dir = function(fname)
                             local root_files = {
@@ -118,7 +125,7 @@ return {
                             }
                             return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
                         end,
-                    }
+                    })
                 end,
             }
         })

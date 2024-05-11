@@ -2,7 +2,8 @@ return {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-        require("conform").setup({
+        local conform = require("conform")
+        conform.setup({
             formatters_by_ft = {
                 -- lua = { "stylua" },
                 -- svelte = { { "prettierd", "prettier" } },
@@ -26,7 +27,7 @@ return {
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>f", function()
-            require("conform").format({
+            conform.format({
                 lsp_fallback = true,
                 async = false,
                 -- 500 ms timeout should be sufficient on linux
