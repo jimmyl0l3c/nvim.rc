@@ -104,6 +104,7 @@ return {
                                 'Pipfile',
                                 'ruff.toml',
                             }
+                            -- TODO: replace unpack with table.unpack when available
                             return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
                         end,
                         init_options = {
