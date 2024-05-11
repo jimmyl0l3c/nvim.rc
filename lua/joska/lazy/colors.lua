@@ -43,7 +43,5 @@ return {
             ColorMyPencils()
         end
     },
-
-
 }
 

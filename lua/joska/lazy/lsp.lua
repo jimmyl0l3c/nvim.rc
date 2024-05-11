@@ -1,3 +1,17 @@
+function InstallFormatters()
+    local registry = require("mason-registry")
+
+    local packages = { 'prettierd' }
+    for i = 1, #packages do
+        local installed = registry.is_installed(packages[i]);
+        if installed == false then
+            registry.get_package(packages[i]):install()
+        else
+            print(string.format("%s is already installed!", packages[i]))
+        end
+    end
+end
+
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -25,11 +39,17 @@ return {
 
         require("fidget").setup({})
         require("mason").setup()
+
+        -- InstallFormatters()
+
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
                 "tsserver",
+                "angularls",
+                "cssls",
+                "html",
                 "jedi_language_server",
                 "ruff_lsp",
             },
@@ -54,7 +74,7 @@ return {
                     }
                 end,
 
-                ["jedi_language_server"] = function ()
+                ["jedi_language_server"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.jedi_language_server.setup({
                         capabilities = capabilities,
@@ -84,6 +104,20 @@ return {
                                 args = {},
                             }
                         }
+                    }
+                end,
+                ["angularls"] = function()
+                    local lspconfig = require("lspconfig")
+                    local util = require('lspconfig.util')
+                    lspconfig.angularls.setup {
+                        capabilities = capabilities,
+                        root_dir = function(fname)
+                            local root_files = {
+                                'angular.json',
+                                'nx.json',
+                            }
+                            return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+                        end,
                     }
                 end,
             }
