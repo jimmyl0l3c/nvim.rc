@@ -7,7 +7,7 @@ return {
     },
 
     config = function()
-        local fb_actions = require "telescope".extensions.file_browser.actions
+        local fb_actions = require("telescope").extensions.file_browser.actions
         require('telescope').setup({
             extensions = {
                 file_browser = {
@@ -20,11 +20,15 @@ return {
                     hijack_netrw = true,
                     mappings = {
                         ["i"] = {
-                            -- your custom insert mode mappings
+                            ["<bs>"] = false,
                         },
                         ["n"] = {
                             ["-"] = fb_actions.backspace,
-                            -- your custom normal mode mappings
+                            ["%"] = fb_actions.create, -- TODO: always create file
+                            ["d"] = fb_actions.create, -- TODO: always create dir
+                            ["D"] = fb_actions.remove,
+                            ["r"] = false,
+                            ["R"] = fb_actions.rename,
                         },
                     },
                 },
