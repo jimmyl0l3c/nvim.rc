@@ -46,6 +46,7 @@ return {
         local workspace_diagnostics = require("workspace-diagnostics")
 
         -- InstallFormatters()
+        vim.api.nvim_create_user_command("InstallFormatters", InstallFormatters, {})
 
         require("mason-lspconfig").setup({
             ensure_installed = {
