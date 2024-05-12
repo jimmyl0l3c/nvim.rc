@@ -27,6 +27,7 @@ return {
         "j-hui/fidget.nvim",
         "tweekmonster/django-plus.vim",
         "artemave/workspace-diagnostics.nvim",
+        "folke/neodev.nvim",
     },
 
     config = function()
@@ -40,6 +41,7 @@ return {
 
         require("fidget").setup({})
         require("mason").setup()
+        require("neodev").setup({})
 
         local workspace_diagnostics = require("workspace-diagnostics")
 
