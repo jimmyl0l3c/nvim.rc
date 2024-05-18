@@ -9,6 +9,14 @@ return {
     config = function()
         local fb_actions = require("telescope").extensions.file_browser.actions
         require('telescope').setup({
+            defaults = {
+                file_ignore_patterns = {
+                    "venv",
+                    "__pycache__",
+                    ".git",
+                    "node_modules",
+                },
+            },
             extensions = {
                 file_browser = {
                     grouped = true,

@@ -56,7 +56,7 @@ return {
                 "angularls",
                 "cssls",
                 "html",
-                "jedi_language_server",
+                "basedpyright",
                 "ruff_lsp",
             },
             handlers = {
@@ -82,12 +82,23 @@ return {
                     })
                 end,
 
-                ["jedi_language_server"] = function()
+                ["basedpyright"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.jedi_language_server.setup({
+                    lspconfig.basedpyright.setup({
                         capabilities = capabilities,
                         on_attach = workspace_diagnostics.populate_workspace_diagnostics,
-                        settings = {},
+                        settings = {
+                            basedpyright = {
+                                disableOrganizeImports = true,
+                                analysis = {
+                                    autoImportCompletions = true,
+                                    autoSearchPaths = true,
+                                    diagnosticMode = "workspace",
+                                    useLibraryCodeForTypes = true,
+                                    typeCheckingMode = "standard"
+                                }
+                            }
+                        }
                     })
                 end,
 
