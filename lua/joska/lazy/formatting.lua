@@ -23,6 +23,7 @@ return {
                 -- toml = { "taplo" },
                 css = { "prettierd" },
                 scss = { "prettierd" },
+                php = { "php-cs-fixer" },
             },
         })
 

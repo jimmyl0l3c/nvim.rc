@@ -3,11 +3,9 @@ return {
     tag = "0.1.5",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        -- "nvim-telescope/telescope-file-browser.nvim",
     },
 
     config = function()
-        -- local fb_actions = require("telescope").extensions.file_browser.actions
         require('telescope').setup({
             defaults = {
                 file_ignore_patterns = {
@@ -17,40 +15,7 @@ return {
                     "node_modules",
                 },
             },
-            -- extensions = {
-            --     file_browser = {
-            --         grouped = true,
-            --         files = true,
-            --         add_dirs = true,
-            --         auto_depth = true,
-            --         -- theme = "ivy",
-            --         -- disables netrw and use telescope-file-browser in its place
-            --         hijack_netrw = true,
-            --         mappings = {
-            --             ["i"] = {
-            --                 ["<bs>"] = false,
-            --             },
-            --             ["n"] = {
-            --                 ["-"] = fb_actions.backspace,
-            --                 ["%"] = fb_actions.create, -- TODO: always create file
-            --                 ["d"] = fb_actions.create, -- TODO: always create dir
-            --                 ["D"] = fb_actions.remove,
-            --                 ["r"] = false,
-            --                 ["R"] = fb_actions.rename,
-            --             },
-            --         },
-            --     },
-            -- },
         })
-
-        -- require("telescope").load_extension("file_browser")
-
-        -- vim.keymap.set("n", "<space>pv", function()
-        --     require("telescope").extensions.file_browser.file_browser({
-        --         path = "%:p:h",
-        --         select_buffer = true,
-        --     })
-        -- end)
 
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
