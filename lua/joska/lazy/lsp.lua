@@ -48,6 +48,19 @@ return {
         -- InstallFormatters()
         vim.api.nvim_create_user_command("InstallFormatters", InstallFormatters, {})
 
+        -- Expand filetypes
+        vim.filetype.add({
+            extension = {
+                gotmpl = 'gotmpl',
+                tmpl = 'gotmpl',
+            },
+            pattern = {
+                [".*/templates/.*%.tpl"] = "helm",
+                [".*/templates/.*%.ya?ml"] = "helm",
+                ["helmfile.*%.ya?ml"] = "helm",
+            },
+        })
+
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
@@ -70,6 +83,7 @@ return {
                     lspconfig.lua_ls.setup({
                         capabilities = capabilities,
                         on_attach = workspace_diagnostics.populate_workspace_diagnostics,
+                        filetypes = { "lua", "lua.tmpl" },
                         settings = {
                             Lua = {
                                 diagnostics = {
@@ -77,6 +91,15 @@ return {
                                 }
                             }
                         },
+                    })
+                end,
+
+                ["gopls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.gopls.setup({
+                        capabilities = capabilities,
+                        on_attach = workspace_diagnostics.populate_workspace_diagnostics,
+                        filetypes = { "go", "gomod", "gowork", "gotmpl", "tmpl" },
                     })
                 end,
 
