@@ -1,1 +1,1 @@
-require("joska")
+require("config")

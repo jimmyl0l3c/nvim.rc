@@ -1,26 +1,25 @@
 # nvim.rc
 
-Nvim.rc based on ThePrimeagen's nvim.rc.
-
+Nvim.rc originally based on ThePrimeagen's nvim.rc.
 
 ## Manual setup
 
-### Python LS
-
-To fully setup python LS, install the [pylsp-requirements.txt](./install/pylsp-requirements.txt)
-in the pylsp venv (by default `nvim-data/mason/packages/python-lsp-server/venv`)
-
-#### Ruff default config
+### Ruff default config
 
 Put default ruff.toml to the following location:
 
 - Windows: `~/AppData/Roaming/ruff/ruff.toml`
 - Linux: `~/.config/ruff/ruff.toml`
 
-## Automatic setup
+## Rewrite checklist
 
-On windows cd to [./install](./install) directory and
-execute [Install.ps1](./install/Install.ps1).
+- [ ] Snippets - configure blink and luasnip
+- [ ] Markdown renderer
 
-**TODO:** add script to install on linux
+### Low prio
 
+- [ ] Dashboard or not?
+- [ ] Zenmode
+- [ ] Persistence?
+- [ ] vimwiki / orgmode / obsidian.nvim?
+- [ ] Try lazygit
