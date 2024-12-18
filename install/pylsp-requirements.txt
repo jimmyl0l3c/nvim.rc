@@ -1,4 +1,0 @@
-pylsp-mypy==0.6.8
-pylsp-rope==0.1.16
-django-stubs[compatible-mypy]
-

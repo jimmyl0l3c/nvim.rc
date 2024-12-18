@@ -5,9 +5,9 @@ return {
     config = function()
         local full_filepath = {
             'filename',
-            file_status = false,     -- Displays file status (readonly status, modified status)
+            file_status = false,   -- Displays file status (readonly status, modified status)
             newfile_status = true, -- Display new file status (new file means no write after created)
-            path = 1,               -- 0: Just the filename
+            path = 1,              -- 0: Just the filename
             -- 1: Relative path
             -- 2: Absolute path
             -- 3: Absolute path, with tilde as the home directory
