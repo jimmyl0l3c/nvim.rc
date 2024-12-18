@@ -6,7 +6,7 @@ Nvim.rc originally based on ThePrimeagen's nvim.rc.
 
 ### Ruff default config
 
-Put default ruff.toml to the following location:
+Put default [ruff.toml](./install/ruff.toml) to the following location:
 
 - Windows: `~/AppData/Roaming/ruff/ruff.toml`
 - Linux: `~/.config/ruff/ruff.toml`
