@@ -17,12 +17,13 @@
 ### LSP
 
 - `gd` - go to definition
+- `gi` - go to implementation
+- `gr` - go to references
 - `K` - hover
 - `<leader>vd` - diagnostic floating window
 - `<leader>vws` find symbol in workspace
 - `<leader>vca` - code actions
 - `<leader>voi` - organize imports
-- `<leader>vrr` - references
 - `<leader>vrn` - LSP rename
 - `[d` - next diagnostic
 - `]d` - previous diagnostic

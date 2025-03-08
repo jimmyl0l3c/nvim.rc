@@ -6,6 +6,7 @@ return {
         "saghen/blink.cmp",
         "j-hui/fidget.nvim",
         "artemave/workspace-diagnostics.nvim",
+        "elkowar/yuck.vim",
         -- "tweekmonster/django-plus.vim",
     },
 
@@ -74,7 +75,6 @@ return {
                             'Pipfile',
                             'ruff.toml',
                         }
-                        -- TODO: get rid of deprecated util.find_git_ancestor
                         return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
                     end,
                     init_options = {
