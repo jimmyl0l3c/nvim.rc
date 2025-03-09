@@ -1,12 +1,12 @@
 return {
-    'saghen/blink.cmp',
+    "saghen/blink.cmp",
     lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = { "rafamadriz/friendly-snippets" },
     -- TODO: add LuaSnip
 
     -- use a release tag to download pre-built binaries
-    version = 'v0.7.4',
+    version = "v0.7.4",
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -16,7 +16,7 @@ return {
         -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
         -- see the "default configuration" section below for full documentation on how to define
         -- your own keymap.
-        keymap = { preset = 'default' },
+        keymap = { preset = "default" },
 
         appearance = {
             -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -25,21 +25,21 @@ return {
             use_nvim_cmp_as_default = true,
             -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
             -- Adjusts spacing to ensure icons are aligned
-            nerd_font_variant = 'mono'
+            nerd_font_variant = "mono",
         },
 
         -- default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, via `opts_extend`
         sources = {
             completion = {
-                enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
+                enabled_providers = { "lsp", "path", "snippets", "buffer" },
             },
         },
 
         -- experimental signature help support
-        signature = { enabled = true }
+        signature = { enabled = true },
     },
     -- allows extending the enabled_providers array elsewhere in your config
     -- without having to redefine it
-    opts_extend = { "sources.completion.enabled_providers" }
+    opts_extend = { "sources.completion.enabled_providers" },
 }

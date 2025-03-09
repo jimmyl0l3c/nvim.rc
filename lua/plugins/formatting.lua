@@ -1,9 +1,9 @@
 function InstallFormatters()
     local registry = require("mason-registry")
 
-    local packages = { 'prettierd' }
+    local packages = { "prettierd", "stylua" }
     for i = 1, #packages do
-        local installed = registry.is_installed(packages[i]);
+        local installed = registry.is_installed(packages[i])
         if installed == false then
             registry.get_package(packages[i]):install()
         else
@@ -43,7 +43,7 @@ return {
     opts = {
         -- Define your formatters
         formatters_by_ft = {
-            -- lua = { "stylua" },
+            lua = { "stylua" },
             -- svelte = { { "prettierd", "prettier" } },
             javascript = { "prettierd" },
             typescript = { "prettierd" },
@@ -76,4 +76,13 @@ return {
         --     },
         -- },
     },
+
+    config = function()
+        require("conform").formatters.stylua = {
+            prepend_args = {
+                "--config-path",
+                "$HOME/.config/nvim/install/stylua.toml",
+            },
+        }
+    end,
 }

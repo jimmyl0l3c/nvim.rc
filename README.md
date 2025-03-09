@@ -13,13 +13,9 @@ Put default [ruff.toml](./install/ruff.toml) to the following location:
 
 ## Rewrite checklist
 
-- [ ] Snippets - configure blink and luasnip
-- [ ] Markdown renderer
-
-### Low prio
-
+- [ ] Snippets - configure blink and luasnip?
 - [ ] Dashboard or not?
 - [ ] Zenmode
 - [ ] Persistence?
-- [ ] vimwiki / orgmode / obsidian.nvim?
+- [ ] orgmode / obsidian.nvim?
 - [ ] Try lazygit

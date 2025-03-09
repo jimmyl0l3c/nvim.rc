@@ -1,4 +1,4 @@
-local blacklist_workspaces = {  }
+local blacklist_workspaces = {}
 local blacklist_path_patterns = { "source/repos" }
 
 local blacklisted_text = ''
