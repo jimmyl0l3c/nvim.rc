@@ -91,3 +91,11 @@
 - `<leader>xL` - location list
 - `<leader>xQ` - quickfix list
 - `<leader>tt` - todo list
+
+## Blink
+
+- `<C-space>` - show/hide docs
+- `<C-e>` - hide
+- `<C-b>` - scroll docs up
+- `<C-f>` - scroll docs down
+- `<C-k>` - show/hide signature

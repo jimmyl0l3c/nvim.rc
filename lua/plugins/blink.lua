@@ -2,11 +2,14 @@ return {
     "saghen/blink.cmp",
     lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+        "rafamadriz/friendly-snippets",
+        "moyiz/blink-emoji.nvim",
+    },
     -- TODO: add LuaSnip
 
     -- use a release tag to download pre-built binaries
-    version = "v0.7.4",
+    version = "v0.13.1",
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -28,12 +31,39 @@ return {
             nerd_font_variant = "mono",
         },
 
+        completion = {
+            ghost_text = { enabled = true },
+        },
+
         -- default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, via `opts_extend`
         sources = {
-            completion = {
-                enabled_providers = { "lsp", "path", "snippets", "buffer" },
+            default = { "lsp", "path", "snippets", "buffer", "emoji" },
+            per_filetype = {
+                lua = { "lsp", "path", "snippets", "buffer", "lazydev" }
             },
+            providers = {
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    fallbacks = { "lsp" }
+                },
+
+                emoji = {
+                    module = "blink-emoji",
+                    name = "Emoji",
+                    score_offset = 15,        -- Tune by preference
+                    opts = { insert = true }, -- Insert emoji (default) or complete its name
+                    should_show_items = function()
+                        return vim.tbl_contains(
+                        -- Enable emoji completion only for git commits and markdown.
+                        -- By default, enabled for all file-types.
+                            { "gitcommit", "markdown" },
+                            vim.o.filetype
+                        )
+                    end,
+                }
+            }
         },
 
         -- experimental signature help support
