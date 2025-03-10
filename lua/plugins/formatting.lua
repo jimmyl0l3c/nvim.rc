@@ -70,19 +70,13 @@ return {
         -- Set up format-on-save
         -- format_on_save = { timeout_ms = 500 },
         -- Customize formatters
-        -- formatters = {
-        --     shfmt = {
-        --         prepend_args = { "-i", "2" },
-        --     },
-        -- },
-    },
-
-    config = function()
-        require("conform").formatters.stylua = {
-            prepend_args = {
-                "--config-path",
-                "$HOME/.config/nvim/install/stylua.toml",
+        formatters = {
+            stylua = {
+                prepend_args = {
+                    "--config-path",
+                    "$HOME/.config/nvim/install/stylua.toml",
+                },
             },
-        }
-    end,
+        },
+    },
 }
