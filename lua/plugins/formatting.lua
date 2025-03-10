@@ -74,7 +74,7 @@ return {
             stylua = {
                 prepend_args = {
                     "--config-path",
-                    "$HOME/.config/nvim/install/stylua.toml",
+                    os.getenv("HOME") .. "/.config/nvim/install/stylua.toml",
                 },
             },
         },

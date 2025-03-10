@@ -6,7 +6,7 @@ return {
     },
 
     config = function()
-        require('telescope').setup({
+        require("telescope").setup({
             defaults = {
                 file_ignore_patterns = {
                     "venv",
@@ -18,26 +18,24 @@ return {
             },
         })
 
-        local builtin = require('telescope.builtin')
+        local builtin = require("telescope.builtin")
 
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-        vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-        vim.keymap.set('n', '<leader>pws', function()
+        vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+        vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+        vim.keymap.set("n", "<leader>pws", function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
         end)
-        vim.keymap.set('n', '<leader>pWs', function()
+        vim.keymap.set("n", "<leader>pWs", function()
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
         end)
-        vim.keymap.set('n', '<leader>ps', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end)
-        vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+        vim.keymap.set("n", "<leader>ps", function() builtin.grep_string({ search = vim.fn.input("Grep > ") }) end)
+        vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 
-        vim.keymap.set('n', '<leader>pc', builtin.git_commits, {})
-        vim.keymap.set('n', '<leader>pb', builtin.git_branches, {})
+        vim.keymap.set("n", "<leader>pc", builtin.git_commits, {})
+        vim.keymap.set("n", "<leader>pb", builtin.git_branches, {})
 
         -- TODO: consider keymaps for quickfix, autocommands, loclist and lsp pickers
-    end
+    end,
 }

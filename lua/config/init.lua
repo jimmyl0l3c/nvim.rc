@@ -6,16 +6,16 @@ require("config.lazy_init")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-local yank_group = augroup('HighlightYank', {})
-local clean_whitespace = augroup('CleanWhitespace', {})
-local lsp_keymap_group = augroup('LspKeymaps', {})
+local yank_group = augroup("HighlightYank", {})
+local clean_whitespace = augroup("CleanWhitespace", {})
+local lsp_keymap_group = augroup("LspKeymaps", {})
 
-autocmd('TextYankPost', {
+autocmd("TextYankPost", {
     group = yank_group,
-    pattern = '*',
+    pattern = "*",
     callback = function()
         vim.highlight.on_yank({
-            higroup = 'IncSearch',
+            higroup = "IncSearch",
             timeout = 40,
         })
     end,
@@ -43,9 +43,7 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>voi", function()
             vim.lsp.buf.code_action({
                 apply = true,
-                filter = function(x)
-                    return x.kind == "source.organizeImports.ruff"
-                end,
+                filter = function(x) return x.kind == "source.organizeImports.ruff" end,
             })
         end, opts)
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
@@ -55,5 +53,5 @@ autocmd("LspAttach", {
 
         -- TODO: remove duplicate references mapping
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    end
+    end,
 })

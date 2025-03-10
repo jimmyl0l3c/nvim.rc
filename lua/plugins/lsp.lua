@@ -26,7 +26,7 @@ return {
         })
 
         local workspace_diagnostics = require("workspace-diagnostics")
-        local capabilities = require('blink.cmp').get_lsp_capabilities()
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
 
         local lspconfig = require("lspconfig")
 
@@ -57,34 +57,34 @@ return {
                                 autoSearchPaths = true,
                                 diagnosticMode = "workspace",
                                 useLibraryCodeForTypes = true,
-                                typeCheckingMode = "standard"
-                            }
-                        }
-                    }
+                                typeCheckingMode = "standard",
+                            },
+                        },
+                    },
                 })
             end,
 
             ["ruff"] = function()
-                local util = require('lspconfig.util')
+                local util = require("lspconfig.util")
                 require("lspconfig").ruff.setup({
                     capabilities = capabilities,
                     on_attach = workspace_diagnostics.populate_workspace_diagnostics,
                     single_file_support = false,
                     root_dir = function(fname)
                         local root_files = {
-                            'pyproject.toml',
-                            'setup.py',
-                            'setup.cfg',
-                            'requirements.txt',
-                            'Pipfile',
-                            'ruff.toml',
+                            "pyproject.toml",
+                            "setup.py",
+                            "setup.cfg",
+                            "requirements.txt",
+                            "Pipfile",
+                            "ruff.toml",
                         }
                         return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
                     end,
                     init_options = {
                         settings = {
                             args = {},
-                        }
+                        },
                     },
                 })
             end,
@@ -116,5 +116,5 @@ return {
         --            prefix = "",
         --        },
         --    })
-    end
+    end,
 }

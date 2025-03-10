@@ -40,30 +40,30 @@ return {
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "emoji" },
             per_filetype = {
-                lua = { "lsp", "path", "snippets", "buffer", "lazydev" }
+                lua = { "lsp", "path", "snippets", "buffer", "lazydev" },
             },
             providers = {
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
-                    fallbacks = { "lsp" }
+                    fallbacks = { "lsp" },
                 },
 
                 emoji = {
                     module = "blink-emoji",
                     name = "Emoji",
-                    score_offset = 15,        -- Tune by preference
+                    score_offset = 15, -- Tune by preference
                     opts = { insert = true }, -- Insert emoji (default) or complete its name
                     should_show_items = function()
                         return vim.tbl_contains(
-                        -- Enable emoji completion only for git commits and markdown.
-                        -- By default, enabled for all file-types.
+                            -- Enable emoji completion only for git commits and markdown.
+                            -- By default, enabled for all file-types.
                             { "gitcommit", "markdown" },
                             vim.o.filetype
                         )
                     end,
-                }
-            }
+                },
+            },
         },
 
         -- experimental signature help support

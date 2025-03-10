@@ -1,7 +1,7 @@
 return {
     {
         "nvim-lua/plenary.nvim",
-        name = "plenary"
+        name = "plenary",
     },
 
     "eandrju/cellular-automaton.nvim",
@@ -24,5 +24,5 @@ return {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
-    }
+    },
 }
