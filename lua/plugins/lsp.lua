@@ -7,7 +7,6 @@ return {
         "j-hui/fidget.nvim",
         "artemave/workspace-diagnostics.nvim",
         "elkowar/yuck.vim",
-        -- "tweekmonster/django-plus.vim",
     },
 
     config = function()
@@ -31,14 +30,14 @@ return {
         local lspconfig = require("lspconfig")
 
         -- Setup language servers installed manually
-        lspconfig.phpactor.setup({
-            capabilities = capabilities,
-            on_attach = workspace_diagnostics.populate_workspace_diagnostics,
-        })
-        lspconfig.csharp_ls.setup({
-            capabilities = capabilities,
-            on_attach = workspace_diagnostics.populate_workspace_diagnostics,
-        })
+        local serversToSetup = { "phpactor", "csharp_ls" }
+
+        for _, value in ipairs(serversToSetup) do
+            lspconfig[value].setup({
+                capabilities = capabilities,
+                on_attach = workspace_diagnostics.populate_workspace_diagnostics,
+            })
+        end
 
         -- Setup language servers installed with Mason
         require("mason-lspconfig").setup_handlers({
