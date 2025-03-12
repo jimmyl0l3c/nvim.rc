@@ -35,6 +35,10 @@ return {
             capabilities = capabilities,
             on_attach = workspace_diagnostics.populate_workspace_diagnostics,
         })
+        lspconfig.csharp_ls.setup({
+            capabilities = capabilities,
+            on_attach = workspace_diagnostics.populate_workspace_diagnostics,
+        })
 
         -- Setup language servers installed with Mason
         require("mason-lspconfig").setup_handlers({
