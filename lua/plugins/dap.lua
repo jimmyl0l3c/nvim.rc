@@ -12,7 +12,7 @@ return {
         local dap = require("dap")
 
         require("dapui").setup()
-        require("nvim-dap-virtual-text").setup()
+        require("nvim-dap-virtual-text").setup({})
 
         vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
         vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
