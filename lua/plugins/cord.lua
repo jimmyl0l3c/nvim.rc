@@ -43,18 +43,12 @@ return {
             vcs = function(opts)
                 return is_blacklisted(opts) and blacklisted_text or ("Committing changes in " .. opts.name)
             end,
-            notes = function(opts)
-                return is_blacklisted(opts) and blacklisted_text or ("Taking notes in " .. opts.name)
-            end,
-            debug = function(opts) return is_blacklisted(opts) and blacklisted_text or ("Debugging in " .. opts.name) end,
-            test = function(opts) return is_blacklisted(opts) and blacklisted_text or ("Testing in " .. opts.name) end,
-            diagnostics = function(opts)
-                return is_blacklisted(opts) and blacklisted_text or ("Fixing problems in " .. opts.name)
-            end,
+            notes = function(_) return "Taking notes" end,
+            debug = function(_) return "Debugging" end,
+            test = function(_) return "Testing" end,
+            diagnostics = function(_) return "Fixing problems" end,
             games = function(opts) return is_blacklisted(opts) and blacklisted_text or ("Playing " .. opts.name) end,
-            terminal = function(opts)
-                return is_blacklisted(opts) and blacklisted_text or ("Running commands in " .. opts.name)
-            end,
+            terminal = function(_) return "Running commands" end,
         },
     },
 }
