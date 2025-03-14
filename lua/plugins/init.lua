@@ -18,15 +18,6 @@ return {
     },
 
     {
-        "lukas-reineke/indent-blankline.nvim",
-        event = { "VeryLazy" },
-        main = "ibl",
-        ---@module "ibl"
-        ---@type ibl.config
-        opts = {},
-    },
-
-    {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         event = { "VeryLazy" },
