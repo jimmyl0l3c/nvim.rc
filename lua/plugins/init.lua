@@ -1,10 +1,5 @@
 return {
     {
-        "nvim-lua/plenary.nvim",
-        name = "plenary",
-    },
-
-    {
         "eandrju/cellular-automaton.nvim",
         cmd = "CellularAutomaton",
         keys = { { "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>" } },
@@ -17,5 +12,15 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         event = { "VeryLazy" },
         opts = {},
+    },
+
+    {
+        "ThePrimeagen/refactoring.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        cmd = "Refactor",
+        config = function() require("refactoring").setup() end,
     },
 }
