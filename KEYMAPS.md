@@ -36,7 +36,7 @@
 
 - `J`/`K` moves selected text
 
-## Telescope
+## Snacks.picker
 
 - `<leader>pf` - find project files
 - `<C-p>` - find git files

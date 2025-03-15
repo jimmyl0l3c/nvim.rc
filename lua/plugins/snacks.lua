@@ -1,30 +1,28 @@
+local file_ignore_patterns = {
+    "venv*",
+    ".venv*",
+    "__pycache__",
+    ".git",
+    "node_modules",
+}
+
 return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     opts = {
-        picker = { enabled = false },
         quickfile = { enabled = false },
         scroll = { enabled = false },
         statuscolumn = { enabled = false },
 
-        ---@class snacks.words.Config
-        words = { enabled = true }, -- TODO: add keymap for jumps
-
-        ---@class snacks.dim.Config
         dim = {}, -- TODO: map a keybind (Snacks.dim())
 
-        ---@class snacks.notifier.Config
-        notifier = { enabled = true }, -- TODO: replace LSP progression?
-
-        ---@class snacks.indent.Config
+        picker = { enabled = true },
+        words = { enabled = true }, -- TODO: add keymap for jumps
+        notifier = { enabled = true },
         indent = { enabled = true },
-
-        ---@class snacks.dashboard.Config
         dashboard = { enabled = true },
 
-        ---@class snacks.bigfile.Config
         bigfile = {
             enabled = true,
             size = 1.5 * 1024 * 1024, -- 1.5MB
@@ -41,14 +39,11 @@ return {
             end,
         },
 
-        ---@class snacks.input.Config
         input = { enabled = true },
 
-        ---@class snacks.scope.Config
         scope = {
             enabled = true,
             treesitter = {
-                ---@type string[]|{enabled?:boolean}
                 blocks = { enabled = true },
             },
         },
@@ -57,6 +52,41 @@ return {
             input = {
                 relative = "cursor",
             },
+        },
+    },
+    keys = {
+        {
+            "<leader>ps",
+            function()
+                Snacks.picker.grep({
+                    search = vim.fn.input("Grep > "),
+                    live = false,
+                })
+            end,
+            desc = "Grep project (not live)",
+        },
+        {
+            "<leader>pf",
+            function() require("snacks").picker.files({ exclude = file_ignore_patterns }) end,
+            desc = "Find files",
+        },
+        { "<C-p>", function() Snacks.picker.git_files() end, desc = "Find git files" },
+        { "<leader>vh", function() Snacks.picker.help() end, {} },
+        { "<leader>pc", function() Snacks.picker.git_log() end, {} },
+        { "<leader>pb", function() Snacks.picker.git_branches() end, {} },
+        {
+            "<leader>pws",
+            function()
+                local word = vim.fn.expand("<cword>")
+                Snacks.picker.grep({ search = word, live = false })
+            end,
+        },
+        {
+            "<leader>pWs",
+            function()
+                local word = vim.fn.expand("<cWORD>")
+                Snacks.picker.grep({ search = word, live = false })
+            end,
         },
     },
 }
