@@ -20,12 +20,8 @@ return {
                     LspReferenceWrite = { bg = referenceColor },
                     LspReferenceText = { bg = referenceColor },
 
-                    TelescopeBorder = { fg = "highlight_high", bg = "none" },
-                    TelescopeNormal = { bg = "none" },
-                    TelescopePromptNormal = { bg = "base" },
-                    TelescopeResultsNormal = { fg = "subtle", bg = "none" },
-                    TelescopeSelection = { fg = "text", bg = "none" },
-                    TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+                    SnacksPickerBorder = { fg = "highlight_high", bg = "none" },
+                    FloatTitle = { bg = "none" },
                 },
             })
 

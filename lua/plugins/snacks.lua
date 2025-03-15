@@ -15,14 +15,53 @@ return {
         scroll = { enabled = false },
         statuscolumn = { enabled = false },
 
+        ---@class snacks.dim.Config
         dim = {}, -- TODO: map a keybind (Snacks.dim())
 
-        picker = { enabled = true },
+        ---@class snacks.picker.Config
+        picker = {
+            enabled = true,
+            ---@class snacks.picker.layout.Config
+            layout = {
+                reverse = true,
+                ---@class snacks.layout.Box
+                layout = {
+                    box = "horizontal",
+                    backdrop = false,
+                    width = 0.8,
+                    height = 0.9,
+                    border = "none",
+                    {
+                        box = "vertical",
+                        { win = "list", title = " Results ", title_pos = "center", border = "rounded" },
+                        {
+                            win = "input",
+                            height = 1,
+                            border = "rounded",
+                            title = "{title} {live} {flags}",
+                            title_pos = "center",
+                        },
+                    },
+                    {
+                        win = "preview",
+                        title = "{preview:Preview}",
+                        width = 0.45,
+                        border = "rounded",
+                        title_pos = "center",
+                    },
+                },
+            },
+        },
+        ---@class snacks.words.Config
         words = { enabled = true }, -- TODO: add keymap for jumps
+        ---@class snacks.notifier.Config
         notifier = { enabled = true },
+        ---@class snacks.indent.Config
         indent = { enabled = true },
+        ---@class snacks.dashboard.Config
         dashboard = { enabled = true },
 
+        ---@class snacks.bigfile.Config
         bigfile = {
             enabled = true,
             size = 1.5 * 1024 * 1024, -- 1.5MB
@@ -39,8 +78,10 @@ return {
             end,
         },
 
+        ---@class snacks.input.Config
         input = { enabled = true },
 
+        ---@class snacks.scope.Config
         scope = {
             enabled = true,
             treesitter = {
