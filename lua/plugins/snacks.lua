@@ -10,14 +10,16 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
         quickfile = { enabled = false },
         scroll = { enabled = false },
         statuscolumn = { enabled = false },
 
+        ---@class snacks.profiler.Config
+        profiler = {},
         ---@class snacks.dim.Config
-        dim = {}, -- TODO: map a keybind (Snacks.dim())
-
+        dim = {},
         ---@class snacks.picker.Config
         picker = {
             enabled = true,
@@ -53,7 +55,7 @@ return {
             },
         },
         ---@class snacks.words.Config
-        words = { enabled = true }, -- TODO: add keymap for jumps
+        words = { enabled = true },
         ---@class snacks.notifier.Config
         notifier = { enabled = true },
         ---@class snacks.indent.Config
@@ -112,15 +114,16 @@ return {
             desc = "Find files",
         },
         { "<C-p>", function() Snacks.picker.git_files() end, desc = "Find git files" },
-        { "<leader>vh", function() Snacks.picker.help() end, {} },
-        { "<leader>pc", function() Snacks.picker.git_log() end, {} },
-        { "<leader>pb", function() Snacks.picker.git_branches() end, {} },
+        { "<leader>vh", function() Snacks.picker.help() end, desc = "Find help pages" },
+        { "<leader>pc", function() Snacks.picker.git_log() end, desc = "Find git commits" },
+        { "<leader>pb", function() Snacks.picker.git_branches() end, desc = "Find git branches" },
         {
             "<leader>pws",
             function()
                 local word = vim.fn.expand("<cword>")
                 Snacks.picker.grep({ search = word, live = false })
             end,
+            desc = "Find cword",
         },
         {
             "<leader>pWs",
@@ -128,6 +131,21 @@ return {
                 local word = vim.fn.expand("<cWORD>")
                 Snacks.picker.grep({ search = word, live = false })
             end,
+            desc = "Find cWORD",
         },
+        { "<M-n>", function() Snacks.words.jump(1, true) end, desc = "Jump to nect reference" },
+        { "<M-p>", function() Snacks.words.jump(-1, true) end, desc = "Jump to previous reference" },
     },
+    init = function()
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "VeryLazy",
+            callback = function()
+                -- Toggle mappins
+                Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ts")
+                Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
+                Snacks.toggle.treesitter():map("<leader>tT")
+                Snacks.toggle.dim():map("<M-d>")
+            end,
+        })
+    end,
 }
