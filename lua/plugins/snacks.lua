@@ -4,12 +4,13 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-        explorer = { enabled = false },
         picker = { enabled = false },
         quickfile = { enabled = false },
         scroll = { enabled = false },
         statuscolumn = { enabled = false },
-        words = { enabled = false },
+
+        ---@class snacks.words.Config
+        words = { enabled = true }, -- TODO: add keymap for jumps
 
         ---@class snacks.dim.Config
         dim = {}, -- TODO: map a keybind (Snacks.dim())

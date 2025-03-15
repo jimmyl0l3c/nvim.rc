@@ -11,18 +11,14 @@ return {
         "rose-pine/neovim",
         name = "rose-pine",
         config = function()
+            local referenceColor = "highlight_low"
+
             require("rose-pine").setup({
                 disable_background = true,
                 highlight_groups = {
-                    -- vim-illuminate
-                    IlluminatedWordRead = { bg = "surface" },
-                    IlluminatedWordWrite = { bg = "surface" },
-                    IlluminatedWordText = { bg = "none" },
-
-                    -- indent-blankline.nvim
-                    -- IblIndent = { fg = "surface" },
-                    -- IblWhitespace = { fg = "surface" },
-                    IblScope = { fg = "none" },
+                    LspReferenceRead = { bg = referenceColor },
+                    LspReferenceWrite = { bg = referenceColor },
+                    LspReferenceText = { bg = referenceColor },
 
                     TelescopeBorder = { fg = "highlight_high", bg = "none" },
                     TelescopeNormal = { bg = "none" },
