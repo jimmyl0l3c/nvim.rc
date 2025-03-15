@@ -135,6 +135,7 @@ return {
         },
         { "<M-n>", function() Snacks.words.jump(1, true) end, desc = "Jump to nect reference" },
         { "<M-p>", function() Snacks.words.jump(-1, true) end, desc = "Jump to previous reference" },
+        { "<leader>Ps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Bufer" },
     },
     init = function()
         vim.api.nvim_create_autocmd("User", {
@@ -145,6 +146,11 @@ return {
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
                 Snacks.toggle.treesitter():map("<leader>tT")
                 Snacks.toggle.dim():map("<M-d>")
+
+                -- Toggle the profiler
+                Snacks.toggle.profiler():map("<leader>Pp")
+                -- Toggle the profiler highlights
+                Snacks.toggle.profiler_highlights():map("<leader>Ph")
             end,
         })
     end,
