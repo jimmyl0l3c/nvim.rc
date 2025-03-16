@@ -56,10 +56,9 @@
 
 - `]c` - jump to next hunk
 - `[c` - jump to previous hunk
-- `<leader>hs` - stage hunk (normal and visual mode)
+- `<leader>hs` - (un)stage hunk (normal and visual mode)
 - `<leader>hr` - reset hunk (normal and visual mode)
 - `<leader>hS` - stage buffer
-- `<leader>hu` - undo stage hunk
 - `<leader>hR` - reset buffer
 - `<leader>hp` - show inline diff
 - `<leader>hb` - blame line (full in floating window)
