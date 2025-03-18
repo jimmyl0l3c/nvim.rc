@@ -1,4 +1,4 @@
 ;extends
 ((text) @injection.content
- (#set! injection.language "lua")
- (#set! injection.combined))
+  (#inject-go-tmpl!)
+  (#set! injection.combined))

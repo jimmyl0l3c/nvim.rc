@@ -38,6 +38,19 @@ return {
             },
         })
 
+        -- gotmpl
+        vim.treesitter.query.add_directive("inject-go-tmpl!", function(_, _, bufnr, _, metadata)
+            local fname = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
+            local _, _, ext, _ = string.find(fname, ".*%.(%a+)(%.%a+)")
+            metadata["injection.language"] = ext
+        end, {})
+
+        vim.filetype.add({
+            extension = {
+                tmpl = "gotmpl",
+            },
+        })
+
         require("treesitter-context").setup({
             enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
             multiwindow = false, -- Enable multiwindow support.
@@ -53,18 +66,5 @@ return {
             zindex = 20, -- The Z-index of the context window
             on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
         })
-
-        -- TODO: register templates
-
-        -- local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        -- treesitter_parser_config.templ = {
-        --     install_info = {
-        --         url = "https://github.com/vrischmann/tree-sitter-templ.git",
-        --         files = { "src/parser.c", "src/scanner.c" },
-        --         branch = "master",
-        --     },
-        -- }
-
-        -- vim.treesitter.language.register("templ", "templ")
     end,
 }
