@@ -81,12 +81,14 @@ return {
                             "requirements.txt",
                             "Pipfile",
                             "ruff.toml",
+                            "manage.py",
                         }
                         return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
                     end,
                     init_options = {
                         settings = {
-                            args = {},
+                            configuration = vim.fn.stdpath("config") .. "/install/ruff.toml",
+                            configurationPreference = "filesystemFirst",
                         },
                     },
                 })

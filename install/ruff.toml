@@ -26,19 +26,41 @@ exclude = [
     "node_modules",
     "site-packages",
     "venv",
+    "conftest.py",
+    "tests",
 ]
 
 line-length = 120
 indent-width = 4
 
-target-version = "py311"
+target-version = "py312"
 
 [lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
-select = ["E4", "E7", "E9", "F", "I"]
-ignore = []
+# Rules list: https://docs.astral.sh/ruff/rules/
+select = [
+    "E1", "E4", "E5", "E7", "E9", "W", "F",  # pycodestyle and pyflakes
+    "I", "TID252", "TID253", # Import-related checks (isort, flake8-tidy-imports)
+    "ARG",  # flake8-unused-arguments
+    "ISC",  # flake8-implicit-str-concat
+    "COM818", "COM819",  # flake8-commas
+    "Q",  # flake8-quotes (enforce consistent quotes)
+    "C4",  # flake8-comprehensions
+    "N8", "UP",  # pep8-naming and pyupgrade
+    "RET",  # flake8-return (missing/unnecessary return statements, unnecessary branch after return, etc.)
+    "SIM101", "SIM102", "SIM103", "SIM108", "SIM109", "SIM11", "SIM2", "SIM3", "SIM4", "SIM9",  # flake8-simplify
+    "TCH",  # flake8-type-checking (move type checking imports to type-checking block, reduces overhead at runtime)
+    "B",  # flake8-bugbear (likely bugs and design problems)
+    "FA",  # flake8-future-annotations (missing future annotations)
+    "LOG009",  # flake8-logging-format (do not use logging.WARN, use logging.WARNING instead)
+    "PIE",  # flake8-pie (misc lints, eg. unnecessry-placeholder, non-unique-enums, etc.)
+    "SLF",  # flake8-slf (private-member access)
+    "SLOT", "INP",  # flake8-slot, flake8-no-pep-420
+    "PTH",  # flake8-use-pathlib
+    "DJ01",  # flake8-django, optionally "DJ008" (requires all models to have __str__ defined)
+]
+ignore = [
+    "ARG002"  # Ignore unused arguments of class methods (might be overridden in subclasses)
+]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
