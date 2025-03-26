@@ -1,3 +1,15 @@
+local function is_in_helm_template()
+    if vim.bo.filetype ~= "yaml" then return false end
+
+    local dir = vim.fn.expand("%:p:h")
+    while dir ~= "/" do
+        if vim.fn.filereadable(dir .. "/Chart.yaml") == 1 then return true end
+        dir = vim.fn.fnamemodify(dir, ":h")
+    end
+
+    return false
+end
+
 return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -49,6 +61,16 @@ return {
             extension = {
                 tmpl = "gotmpl",
             },
+        })
+
+        -- helm templates
+        vim.api.nvim_create_autocmd("BufRead", {
+            pattern = { "*/templates/*.yaml" },
+            callback = function()
+                if is_in_helm_template() then
+                    vim.bo.filetype = "helm"
+                end
+            end,
         })
 
         require("treesitter-context").setup({
