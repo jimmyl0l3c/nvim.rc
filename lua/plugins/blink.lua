@@ -9,7 +9,7 @@ return {
     -- TODO: add LuaSnip
 
     -- use a release tag to download pre-built binaries
-    version = "v0.13.1",
+    version = "v1.0.*",
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -51,7 +51,6 @@ return {
 
                 emoji = {
                     module = "blink-emoji",
-                    name = "Emoji",
                     score_offset = 15, -- Tune by preference
                     opts = { insert = true }, -- Insert emoji (default) or complete its name
                     should_show_items = function()
