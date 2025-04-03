@@ -72,6 +72,15 @@ return {
                 end
             end,
         })
+        -- jenkinsfiles without suffix
+        vim.api.nvim_create_autocmd("BufRead", {
+            pattern = { "*/jenkinsfiles/*" },
+            callback = function()
+                if vim.bo.filetype == "" then
+                    vim.bo.filetype = "groovy"
+                end
+            end,
+        })
 
         require("treesitter-context").setup({
             enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
