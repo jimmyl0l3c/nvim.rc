@@ -6,19 +6,21 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
+vim.api.nvim_create_user_command("ColorMyPencils", ColorMyPencils, {})
+
 return {
     {
         "rose-pine/neovim",
         name = "rose-pine",
         config = function()
-            local referenceColor = "highlight_low"
+            local reference_color = "highlight_low"
 
             require("rose-pine").setup({
                 disable_background = true,
                 highlight_groups = {
-                    LspReferenceRead = { bg = referenceColor },
-                    LspReferenceWrite = { bg = referenceColor },
-                    LspReferenceText = { bg = referenceColor },
+                    LspReferenceRead = { bg = reference_color },
+                    LspReferenceWrite = { bg = reference_color },
+                    LspReferenceText = { bg = reference_color },
 
                     SnacksPickerBorder = { fg = "highlight_high", bg = "none" },
                     FloatTitle = { bg = "none" },

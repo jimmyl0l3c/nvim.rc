@@ -1,19 +1,15 @@
 function InstallFormatters()
     local registry = require("mason-registry")
 
-    local packages = { "prettierd", "stylua" }
-    for i = 1, #packages do
-        local installed = registry.is_installed(packages[i])
-        if installed == false then
-            registry.get_package(packages[i]):install()
-        else
-            print(string.format("%s is already installed!", packages[i]))
+    local formatters_to_install = { "prettierd", "stylua" }
+
+    for _, package in ipairs(formatters_to_install) do
+        if not registry.is_installed(package) then
+            vim.notify("Installing " .. package)
+            registry.get_package(package):install()
         end
     end
 end
-
--- InstallFormatters()
-vim.api.nvim_create_user_command("InstallFormatters", InstallFormatters, {})
 
 return {
     "stevearc/conform.nvim",

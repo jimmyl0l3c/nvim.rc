@@ -1,3 +1,38 @@
+local python_stubs_path = vim.fn.stdpath("data") .. "/py-stubs/"
+
+function InstallMissingPyStubs()
+    if not vim.uv.fs_stat(python_stubs_path) then vim.fn.mkdir(python_stubs_path, "p") end
+
+    local stubs = {
+        { pypi_name = "django-types", lib_name = "django-stubs" },
+        { pypi_name = "djangorestframework-types", lib_name = "rest_framework-stubs" },
+    }
+
+    local installed_stubs = vim.tbl_map(
+        function(value) return vim.fn.fnamemodify(value, ":t") end,
+        vim.fn.glob(python_stubs_path .. "/*", false, true)
+    )
+
+    local pyright_pip = vim.fn.stdpath("data") .. "/mason/packages/basedpyright/venv/bin/pip3"
+
+    if not vim.uv.fs_stat(pyright_pip) then vim.notify("Cannot install stubs, pyright venv not found") end
+
+    for _, value in ipairs(stubs) do
+        if not vim.tbl_contains(installed_stubs, value.lib_name) then
+            vim.notify("Installing " .. value.pypi_name)
+
+            vim.fn.system({
+                pyright_pip,
+                "install",
+                "django-types",
+                "djangorestframework-types",
+                "--target",
+                python_stubs_path,
+            })
+        end
+    end
+end
+
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -30,9 +65,9 @@ return {
         local lspconfig = require("lspconfig")
 
         -- Setup language servers installed manually
-        local serversToSetup = { "phpactor", "csharp_ls" }
+        local servers_to_setup = { "phpactor", "csharp_ls" }
 
-        for _, value in ipairs(serversToSetup) do
+        for _, value in ipairs(servers_to_setup) do
             lspconfig[value].setup({
                 capabilities = capabilities,
                 on_attach = workspace_diagnostics.populate_workspace_diagnostics,
@@ -49,6 +84,8 @@ return {
             end,
 
             ["basedpyright"] = function()
+                InstallMissingPyStubs()
+
                 require("lspconfig").basedpyright.setup({
                     capabilities = capabilities,
                     on_attach = workspace_diagnostics.populate_workspace_diagnostics,
@@ -61,6 +98,7 @@ return {
                                 diagnosticMode = "workspace",
                                 useLibraryCodeForTypes = true,
                                 typeCheckingMode = "standard",
+                                stubPath = python_stubs_path,
                             },
                         },
                     },
