@@ -77,7 +77,7 @@ return {
                 end,
                 init_options = {
                     settings = {
-                        configuration = vim.fn.stdpath("config") .. "/install/ruff.toml",
+                        configuration = vim.fn.stdpath("config") .. "/ls_configs/ruff.toml",
                         configurationPreference = "filesystemFirst",
                     },
                 },

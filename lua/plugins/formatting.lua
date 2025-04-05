@@ -59,7 +59,7 @@ return {
             stylua = {
                 prepend_args = {
                     "--config-path",
-                    vim.fn.stdpath("config") .. "/install/stylua.toml",
+                    vim.fn.stdpath("config") .. "/ls_configs/stylua.toml",
                 },
             },
         },
