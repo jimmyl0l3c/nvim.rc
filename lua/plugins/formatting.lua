@@ -1,15 +1,4 @@
-function InstallFormatters()
-    local registry = require("mason-registry")
-
-    local formatters_to_install = { "prettierd", "stylua" }
-
-    for _, package in ipairs(formatters_to_install) do
-        if not registry.is_installed(package) then
-            vim.notify("Installing " .. package)
-            registry.get_package(package):install()
-        end
-    end
-end
+function InstallFormatters() require("lsp").mason_install({ "prettierd" }) end
 
 return {
     "stevearc/conform.nvim",
