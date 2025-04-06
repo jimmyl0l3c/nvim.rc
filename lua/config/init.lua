@@ -45,9 +45,11 @@ autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
-local function deprecate_keybind(new_bind, func)
-    vim.notify('Use "' .. new_bind .. '" instead', "warn")
-    func()
+--- Show notification with new keybind and do nothing
+---@param new_bind string new keybind to do required action
+---@param action_name string action name
+local function replaced_keybind(new_bind, action_name)
+    vim.notify(string.format('%s: use "%s" instead', action_name, new_bind), "error")
 end
 
 autocmd("LspAttach", {
@@ -57,10 +59,13 @@ autocmd("LspAttach", {
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 
-        vim.keymap.set("n", "gr", function() deprecate_keybind("grr", vim.lsp.buf.references) end, opts)
-        vim.keymap.set("n", "gi", function() deprecate_keybind("gri", vim.lsp.buf.implementation) end, opts)
-        vim.keymap.set("n", "<leader>vca", function() deprecate_keybind("gra", vim.lsp.buf.code_action) end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() deprecate_keybind("grn", vim.lsp.buf.rename) end, opts)
+        -- Replaced keybinds to be removed in the future (when I get used to the new ones)
+        vim.keymap.set("n", "gr", function() replaced_keybind("grr", "go_to_references") end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() replaced_keybind("grr", "go_to_references") end, opts)
+        vim.keymap.set("n", "gi", function() replaced_keybind("gri", "go_to_implementation") end, opts)
+        vim.keymap.set("n", "<leader>vca", function() replaced_keybind("gra", "code_action") end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() replaced_keybind("grn", "lsp_rename") end, opts)
+        vim.keymap.set({ "n", "v" }, "<leader>c", function() replaced_keybind("gc", "comment_code") end)
 
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
