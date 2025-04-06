@@ -73,6 +73,7 @@ autocmd("LspAttach", {
         end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts) -- TODO: remove in favor of <C-s>?
 
+        vim.keymap.set("n", "<leader>vi", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
         vim.keymap.set("n", "<leader>vt", function()
             local current_config = vim.diagnostic.config()
             vim.diagnostic.config({

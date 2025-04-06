@@ -143,6 +143,7 @@ return {
         { "<M-n>", function() Snacks.words.jump(1, true) end, desc = "Jump to nect reference" },
         { "<M-p>", function() Snacks.words.jump(-1, true) end, desc = "Jump to previous reference" },
         { "<leader>Ps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Bufer" },
+        { "db", function() Snacks.bufdelete.delete() end },
     },
     init = function()
         vim.api.nvim_create_autocmd("User", {
