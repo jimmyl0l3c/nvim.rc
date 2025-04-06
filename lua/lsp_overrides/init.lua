@@ -21,7 +21,7 @@ local M = {
 function M.mason_install(package_names)
     local registry = require("mason-registry")
 
-    for _, package in ipairs(package_names) do
+    for package in vim.iter(package_names) do
         if not registry.is_installed(package) then
             vim.notify("Installing " .. package)
             registry.get_package(package):install()

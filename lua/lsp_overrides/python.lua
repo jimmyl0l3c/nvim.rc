@@ -17,7 +17,7 @@ local function py_install_missing_stubs()
 
     if not vim.uv.fs_stat(pyright_pip) then vim.notify("Cannot install stubs, pyright venv not found") end
 
-    for _, stub in ipairs(stubs) do
+    for stub in vim.iter(stubs) do
         if not vim.tbl_contains(installed_stubs, stub.lib_name) then
             vim.notify("Installing " .. stub.pypi_name)
 

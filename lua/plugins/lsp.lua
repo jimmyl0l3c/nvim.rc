@@ -34,7 +34,7 @@ return {
         -- Setup language servers installed manually
         local servers_to_setup = { "phpactor", "csharp_ls" }
 
-        for _, value in ipairs(servers_to_setup) do
+        for value in vim.iter(servers_to_setup) do
             lspconfig[value].setup(config_opts)
         end
 

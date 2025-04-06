@@ -6,7 +6,7 @@ local blacklisted_text = ""
 local is_blacklisted = function(opts)
     local cwd = vim.fn.getcwd()
 
-    for _, pattern in ipairs(blacklist_path_patterns) do
+    for pattern in vim.iter(blacklist_path_patterns) do
         if string.match(cwd, pattern) then return true end
     end
 
