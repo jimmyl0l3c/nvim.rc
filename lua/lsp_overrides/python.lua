@@ -39,6 +39,7 @@ return {
     lsp_overrides = {
         basedpyright = function(opts)
             return {
+                capabilities = opts.capabilities,
                 on_attach = opts.on_attach,
                 settings = {
                     basedpyright = {
@@ -59,6 +60,7 @@ return {
         ruff = function(opts)
             local util = require("lspconfig.util")
             return {
+                capabilities = opts.capabilities,
                 on_attach = opts.on_attach,
                 single_file_support = false,
                 root_dir = function(fname)

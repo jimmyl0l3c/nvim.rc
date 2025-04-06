@@ -23,4 +23,11 @@ return {
         cmd = "Refactor",
         config = function() require("refactoring").setup() end,
     },
+
+    {
+        "echasnovski/mini.surround",
+        version = "*",
+        event = { "BufReadPre", "BufNewFile" },
+        opts = {},
+    },
 }

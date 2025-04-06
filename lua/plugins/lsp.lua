@@ -26,7 +26,10 @@ return {
 
         local lspconfig = require("lspconfig")
 
-        local config_opts = { on_attach = require("workspace-diagnostics").populate_workspace_diagnostics }
+        local config_opts = {
+            capabilities = require("blink.cmp").get_lsp_capabilities(),
+            on_attach = require("workspace-diagnostics").populate_workspace_diagnostics,
+        }
 
         -- Setup language servers installed manually
         local servers_to_setup = { "phpactor", "csharp_ls" }
