@@ -1,12 +1,12 @@
 ---@class lsp_conf.Language
 ---@field mason_packages? table<string> packages to be installed using Mason
 ---@field install? fun() called to install the LS or its dependencies (called after installing Mason packages)
----@field lsp_configs? table<string, fun(opts: table): table>
+---@field lsp_overrides? table<string, fun(opts: table): table>
 
 local M = {
     lang = {
         ---@class lsp_conf.Language
-        python = require("lsp.python"),
+        python = require("lsp_overrides.python"),
 
         ---@class lsp_conf.Language
         go = { mason_packages = { "gopls" } },
