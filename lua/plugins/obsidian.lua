@@ -22,6 +22,11 @@ return {
         "ObsidianDailies",
         "ObsidianQuickSwitch",
     },
+    keys = {
+        { "<leader>po", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian quick switch" },
+        -- TODO: add keybind for yesterday, today, tomorrow or just ObsidianDailies?
+        -- TODO: add keybind to paste image
+    },
     dependencies = {
         "nvim-lua/plenary.nvim",
     },

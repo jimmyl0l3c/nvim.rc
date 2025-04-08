@@ -116,6 +116,11 @@ return {
             desc = "Grep project (not live)",
         },
         {
+            "<leader>pg",
+            function() Snacks.picker.grep() end,
+            desc = "Live grep project",
+        },
+        {
             "<leader>pf",
             function() require("snacks").picker.files({ exclude = file_ignore_patterns }) end,
             desc = "Find files",
@@ -140,7 +145,7 @@ return {
             end,
             desc = "Find cWORD",
         },
-        { "<M-n>", function() Snacks.words.jump(1, true) end, desc = "Jump to nect reference" },
+        { "<M-n>", function() Snacks.words.jump(1, true) end, desc = "Jump to next reference" },
         { "<M-p>", function() Snacks.words.jump(-1, true) end, desc = "Jump to previous reference" },
         { "<leader>Ps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Bufer" },
         { "db", function() Snacks.bufdelete.delete() end },
