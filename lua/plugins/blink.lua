@@ -15,6 +15,7 @@ return {
         dependencies = {
             "rafamadriz/friendly-snippets",
             "moyiz/blink-emoji.nvim",
+            "MahanRahmati/blink-nerdfont.nvim",
         },
         -- TODO: add LuaSnip
 
@@ -48,7 +49,7 @@ return {
             -- default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, via `opts_extend`
             sources = {
-                default = { "emoji", unpack(default_sources) },
+                default = { "emoji", "nerdfont", unpack(default_sources) },
                 per_filetype = {
                     lua = { "lazydev", unpack(default_sources) },
                     markdown = {
@@ -78,6 +79,13 @@ return {
                                 vim.o.filetype
                             )
                         end,
+                    },
+
+                    nerdfont = {
+                        module = "blink-nerdfont",
+                        name = "Nerd Fonts",
+                        score_offset = 15, -- Tune by preference
+                        opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
                     },
 
                     obsidian = {

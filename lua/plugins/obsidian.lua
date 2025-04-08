@@ -4,8 +4,9 @@ local obsidian_vaults_path = vim.fn.expand("~") .. "/obsidian-vaults"
 os.setlocale("C")
 
 return {
-    "epwalsh/obsidian.nvim",
-    version = "*",
+    -- "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
+    -- version = "*",
     lazy = true,
     -- ft = "markdown",
     event = {
@@ -39,6 +40,19 @@ return {
             folder = "daily",
             date_format = "%Y-%m-%d-%a",
             alias_format = "%Y-%m-%d %A",
+        },
+
+        picker = {
+            name = "snacks.pick",
+            note_mappings = {
+                insert_link = "<C-l>",
+            },
+            tag_mappings = {
+                -- Add tag(s) to current note.
+                tag_note = "<C-x>",
+                -- Insert a tag at the current location.
+                insert_tag = "<C-l>",
+            },
         },
 
         -- Optional, customize how note IDs are generated given an optional title.
