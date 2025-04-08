@@ -1,4 +1,4 @@
-local default_sources = { "lsp", "path", "snippets", "buffer" }
+local default_sources = { "lsp", "path", "snippets", "buffer", "nerdfont" }
 
 return {
     {
@@ -49,7 +49,7 @@ return {
             -- default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, via `opts_extend`
             sources = {
-                default = { "emoji", "nerdfont", unpack(default_sources) },
+                default = { "emoji", unpack(default_sources) },
                 per_filetype = {
                     lua = { "lazydev", unpack(default_sources) },
                     markdown = {

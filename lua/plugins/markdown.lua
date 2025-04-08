@@ -10,5 +10,29 @@ return {
     ---@type render.md.UserConfig
     opts = {
         completions = { lsp = { enabled = true } },
+        checkbox = {
+            unchecked = { icon = "󰄱" },
+            checked = { icon = "", scope_highlight = "@markup.strikethrough" },
+            custom = {
+                important = {
+                    raw = "[!]",
+                    rendered = "",
+                    highlight = "DiagnosticWarn",
+                    scope_highlight = "@markup.bold",
+                },
+                cancelled = {
+                    raw = "[~]",
+                    rendered = "󰰱",
+                    highlight = "DiagnosticError",
+                    scope_highlight = "@markup.strikethrough",
+                },
+                followup = {
+                    raw = "[>]",
+                    rendered = "",
+                    highlight = "DiagnosticWarn",
+                    scope_highlight = "@markup.bold",
+                },
+            },
+        },
     },
 }
