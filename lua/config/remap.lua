@@ -38,3 +38,8 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 -- Easy visual indentation
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- Execute current file/line/selection
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space><space>l", "<cmd>:.lua<CR>")
+vim.keymap.set("v", "<space><space>l", "<cmd>:'<,'>lua<CR>")

@@ -11,7 +11,6 @@
 - disabled `Q`
 - `<leader>s` - substitute the word cursor is on
 - `<leader>mr` - make it rain
-- `<leader><leader>` - shout out
 - `<leader>u` - undo tree
 
 ### LSP

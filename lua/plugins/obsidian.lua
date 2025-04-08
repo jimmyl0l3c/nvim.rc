@@ -20,6 +20,7 @@ return {
         "ObsidianYesterday",
         "ObsidianTomorrow",
         "ObsidianDailies",
+        "ObsidianQuickSwitch",
     },
     dependencies = {
         "nvim-lua/plenary.nvim",

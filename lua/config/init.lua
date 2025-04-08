@@ -1,3 +1,6 @@
+-- Neovim version this config is tested on
+local expected_nvim_version = "0.11.0"
+
 -- profile nvim startup
 if vim.env.PROF then
     local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
@@ -21,15 +24,30 @@ require("config.remap")
 
 require("config.lazy_init")
 
+---@type vim.Version
+local current_nvim_version = vim.version()
+
+if not vim.version.eq(expected_nvim_version, current_nvim_version) then
+    vim.notify(
+        string.format(
+            "Invalid neovim version: %d.%d.%d, expected: %s",
+            current_nvim_version.major,
+            current_nvim_version.minor,
+            current_nvim_version.patch,
+            expected_nvim_version
+        ),
+        "warn"
+    )
+end
+
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-local yank_group = augroup("HighlightYank", {})
 local clean_whitespace = augroup("CleanWhitespace", {})
 local lsp_keymap_group = augroup("LspKeymaps", {})
 
 autocmd("TextYankPost", {
-    group = yank_group,
+    group = augroup("HighlightYank", { clear = true }),
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({
