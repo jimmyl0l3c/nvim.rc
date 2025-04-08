@@ -1,5 +1,8 @@
 local obsidian_vaults_path = vim.fn.expand("~") .. "/obsidian-vaults"
 
+-- set locale to fix day of the week
+os.setlocale("C")
+
 return {
     "epwalsh/obsidian.nvim",
     version = "*",
@@ -8,6 +11,14 @@ return {
     event = {
         "BufReadPre " .. obsidian_vaults_path .. "/*.md",
         "BufNewFile " .. obsidian_vaults_path .. "/*.md",
+    },
+    cmd = {
+        "ObsidianWorkspace",
+        "ObsidianNew",
+        "ObsidianToday",
+        "ObsidianYesterday",
+        "ObsidianTomorrow",
+        "ObsidianDailies",
     },
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -22,6 +33,12 @@ return {
                 name = "work",
                 path = obsidian_vaults_path .. "/work",
             },
+        },
+
+        daily_notes = {
+            folder = "daily",
+            date_format = "%Y-%m-%d-%a",
+            alias_format = "%Y-%m-%d %A",
         },
 
         -- Optional, customize how note IDs are generated given an optional title.
