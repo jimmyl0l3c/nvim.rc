@@ -29,8 +29,8 @@ return {
             workspace = function(opts)
                 return is_blacklisted(opts) and "In a secret workspace" or ("In " .. opts.workspace)
             end,
-            viewing = function(opts) return is_blacklisted(opts) and blacklisted_text or ("Viewing " .. opts.filename) end,
-            editing = function(opts) return is_blacklisted(opts) and blacklisted_text or ("Editing " .. opts.filename) end,
+            viewing = function(opts) return string.format("Viewing %s file", opts.filetype) end,
+            editing = function(opts) return string.format("Editing %s file", opts.filetype) end,
             file_browser = function(opts)
                 return is_blacklisted(opts) and blacklisted_text or ("Browsing files in " .. opts.name)
             end,
