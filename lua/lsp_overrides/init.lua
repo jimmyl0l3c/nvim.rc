@@ -9,7 +9,7 @@ local M = {
         python = require("lsp_overrides.python"),
 
         ---@class lsp_conf.Language
-        go = { mason_packages = { "gopls" } },
+        go = { mason_packages = { "gopls", "goimports" } },
 
         ---@class lsp_conf.Language
         lua = { mason_packages = { "lua-language-server", "stylua" } },

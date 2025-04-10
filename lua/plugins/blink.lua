@@ -18,6 +18,10 @@ return {
             "rafamadriz/friendly-snippets",
             "moyiz/blink-emoji.nvim",
             "MahanRahmati/blink-nerdfont.nvim",
+            -- {
+            --     "Kaiser-Yang/blink-cmp-git",
+            --     dependencies = { "nvim-lua/plenary.nvim" },
+            -- },
         },
         -- TODO: add LuaSnip
 
