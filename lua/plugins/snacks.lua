@@ -60,6 +60,31 @@ return {
                     },
                 },
             },
+            sources = {
+                select = {
+                    config = function(opts)
+                        if vim.bo.filetype == "python" then
+                            -- Increase score of basedpyright
+                            opts.sort = function(a, b)
+                                local client_a = vim.lsp.get_client_by_id(a.item.ctx.client_id)
+                                local client_b = vim.lsp.get_client_by_id(b.item.ctx.client_id)
+
+                                if client_a == nil or client_b == nil then return a.score > b.score end
+
+                                local score_a = a.score or 0
+                                local score_b = b.score or 0
+
+                                if client_a.name == "basedpyright" then score_a = score_a + 10 end
+                                if client_b.name == "basedpyright" then score_b = score_b + 10 end
+
+                                return score_a > score_b
+                            end
+                            if opts.items ~= nil then table.sort(opts.items, opts.sort) end
+                        end
+                        return opts
+                    end,
+                },
+            },
         },
         ---@class snacks.words.Config
         words = { enabled = true },
