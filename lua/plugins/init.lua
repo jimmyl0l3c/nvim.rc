@@ -21,7 +21,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         cmd = "Refactor",
-        config = function() require("refactoring").setup() end,
+        config = function() require("refactoring").setup({}) end,
     },
 
     {

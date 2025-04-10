@@ -1,4 +1,6 @@
-local default_sources = { "lsp", "path", "snippets", "buffer", "nerdfont" }
+local default_sources = { "lsp", "path", "snippets", "buffer" }
+
+local function is_commit_or_md() return vim.tbl_contains({ "gitcommit", "markdown" }, vim.o.filetype) end
 
 return {
     {
@@ -51,7 +53,7 @@ return {
             sources = {
                 default = { "emoji", unpack(default_sources) },
                 per_filetype = {
-                    lua = { "lazydev", unpack(default_sources) },
+                    lua = { "lazydev", "nerdfont", unpack(default_sources) },
                     markdown = {
                         "emoji",
                         "obsidian",
@@ -71,14 +73,7 @@ return {
                         module = "blink-emoji",
                         score_offset = 15, -- Tune by preference
                         opts = { insert = true }, -- Insert emoji (default) or complete its name
-                        should_show_items = function()
-                            return vim.tbl_contains(
-                                -- Enable emoji completion only for git commits and markdown.
-                                -- By default, enabled for all file-types.
-                                { "gitcommit", "markdown" },
-                                vim.o.filetype
-                            )
-                        end,
+                        should_show_items = is_commit_or_md,
                     },
 
                     nerdfont = {
