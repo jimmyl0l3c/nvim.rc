@@ -29,6 +29,8 @@ return {
 
         local ui = require("dapui")
 
+        vim.keymap.set("n", "<F7>", function() ui.close() end)
+
         dap.listeners.before.attach.dapui_config = function() ui.open() end
         dap.listeners.before.launch.dapui_config = function() ui.open() end
         dap.listeners.before.event_terminated.dapui_config = function() ui.close() end
@@ -37,6 +39,18 @@ return {
         -- Setup DAPs
         require("dap-python").setup("uv")
         require("dap-python").test_runner = "pytest"
-        require("dap-go").setup()
+        require("dap-go").setup({
+            delve = {
+                port = "38697",
+            },
+            dap_configurations = {
+                {
+                    type = "go",
+                    name = "Attach remote",
+                    mode = "remote",
+                    request = "attach",
+                },
+            },
+        })
     end,
 }
