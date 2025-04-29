@@ -1,5 +1,5 @@
 -- Neovim version this config is tested on
-local expected_nvim_version = "0.11.0"
+local expected_nvim_version = "0.11.1"
 
 -- profile nvim startup
 if vim.env.PROF then

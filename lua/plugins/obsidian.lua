@@ -13,15 +13,7 @@ return {
         "BufReadPre " .. obsidian_vaults_path .. "/*.md",
         "BufNewFile " .. obsidian_vaults_path .. "/*.md",
     },
-    cmd = {
-        "ObsidianWorkspace",
-        "ObsidianNew",
-        "ObsidianToday",
-        "ObsidianYesterday",
-        "ObsidianTomorrow",
-        "ObsidianDailies",
-        "ObsidianQuickSwitch",
-    },
+    cmd = { "Obsidian" },
     keys = {
         { "<leader>po", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian quick switch" },
         -- TODO: add keybind for yesterday, today, tomorrow or just ObsidianDailies?
