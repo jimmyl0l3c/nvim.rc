@@ -1,5 +1,5 @@
 -- Neovim version this config is tested on
-local expected_nvim_version = "0.11.1"
+local expected_nvim_version = "^0.11.0"
 
 -- profile nvim startup
 if vim.env.PROF then
@@ -27,7 +27,9 @@ require("config.lazy_init")
 ---@type vim.Version
 local current_nvim_version = vim.version()
 
-if not vim.version.eq(expected_nvim_version, current_nvim_version) then
+local required_version_range = vim.version.range(expected_nvim_version)
+
+if required_version_range ~= nil and not required_version_range:has(current_nvim_version) then
     vim.notify(
         string.format(
             "Invalid neovim version: %d.%d.%d, expected: %s",
@@ -38,6 +40,8 @@ if not vim.version.eq(expected_nvim_version, current_nvim_version) then
         ),
         "warn"
     )
+elseif required_version_range == nil then
+    vim.notify("Invalid version range: " .. expected_nvim_version, "error")
 end
 
 local augroup = vim.api.nvim_create_augroup
