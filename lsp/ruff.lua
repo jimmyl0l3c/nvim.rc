@@ -1,3 +1,4 @@
+---@class vim.lsp.Config
 return {
     root_markers = {
         "pyproject.toml",
@@ -7,9 +8,6 @@ return {
         "Pipfile",
         "ruff.toml",
         "manage.py",
-    },
-    settings = {
-        single_file_support = false,
     },
     init_options = {
         settings = {

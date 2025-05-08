@@ -3,9 +3,9 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "j-hui/fidget.nvim",
         "artemave/workspace-diagnostics.nvim",
         "elkowar/yuck.vim",
+        "j-hui/fidget.nvim",
     },
 
     config = function()
@@ -19,23 +19,16 @@ return {
         })
 
         require("mason").setup()
-        require("mason-lspconfig").setup({
-            ensure_installed = {},
-        })
+        require("mason-lspconfig").setup({ ensure_installed = {} })
 
-        local lspconfig = require("lspconfig")
+        -- vim.lsp.config("*", {
+        --     on_attach = function(client, bufnr)
+        --         vim.notify("on_attach client=" .. client.name .. ", buffer=" .. bufnr)
+        --         require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+        --     end,
+        -- })
 
-        local config_opts = {
-            capabilities = require("blink.cmp").get_lsp_capabilities(),
-            on_attach = require("workspace-diagnostics").populate_workspace_diagnostics,
-        }
-
-        -- Setup language servers installed manually
-        -- TODO: do not use lspconfig.setup
-        local servers_to_setup = { "phpactor", "csharp_ls" }
-
-        for value in vim.iter(servers_to_setup) do
-            lspconfig[value].setup(config_opts)
-        end
+        -- Enable language servers installed manually
+        vim.lsp.enable({ "phpactor", "csharp_ls" })
     end,
 }

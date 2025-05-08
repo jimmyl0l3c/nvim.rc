@@ -1,3 +1,4 @@
+---@class vim.lsp.Config
 return {
     settings = {
         basedpyright = {
