@@ -1,4 +1,4 @@
-function InstallFormatters() require("lsp_overrides.init").mason_install({ "prettierd" }) end
+function InstallFormatters() require("lsp_setup.init").mason_install({ "prettierd" }) end
 
 return {
     "stevearc/conform.nvim",

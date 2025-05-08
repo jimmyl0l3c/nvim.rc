@@ -1,5 +1,3 @@
-local default_sources = { "lsp", "path", "snippets", "buffer" }
-
 local function is_commit_or_md() return vim.tbl_contains({ "gitcommit", "markdown" }, vim.o.filetype) end
 
 return {
@@ -55,15 +53,19 @@ return {
             -- default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, via `opts_extend`
             sources = {
-                default = { "emoji", unpack(default_sources) },
+                default = { "emoji", "lsp", "path", "snippets", "buffer" },
                 per_filetype = {
-                    lua = { "lazydev", "nerdfont", unpack(default_sources) },
+                    lua = {
+                        inherit_defaults = true,
+                        "lazydev",
+                        "nerdfont",
+                    },
                     markdown = {
+                        inherit_defaults = true,
                         "emoji",
                         "obsidian",
                         "obsidian_new",
                         "obsidian_tags",
-                        unpack(default_sources),
                     },
                 },
                 providers = {
