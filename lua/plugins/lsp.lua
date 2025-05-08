@@ -28,6 +28,13 @@ return {
         --     end,
         -- })
 
+        local lsp_configs = require("lsp_config")
+
+        for name, config in pairs(lsp_configs) do
+            vim.notify("would configure '" .. name .. "' with config " .. vim.inspect(config))
+            vim.lsp.config(name, config)
+        end
+
         -- Enable language servers installed manually
         vim.lsp.enable({ "phpactor", "csharp_ls" })
     end,
