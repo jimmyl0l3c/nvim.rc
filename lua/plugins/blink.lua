@@ -67,6 +67,10 @@ return {
                         "obsidian_new",
                         "obsidian_tags",
                     },
+                    yuck = {
+                        inherit_defaults = true,
+                        "nerdfont",
+                    },
                 },
                 providers = {
                     lazydev = {
