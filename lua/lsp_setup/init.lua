@@ -44,10 +44,4 @@ function M.setup(language_name)
     if language.install ~= nil then language.install() end
 end
 
-vim.api.nvim_create_user_command("SetupLsp", function(opts) M.setup(opts.fargs[1]) end, {
-    desc = "Install language server with its dependencies if missing",
-    nargs = 1,
-    complete = function(ArgLead, CmdLine, CursorPos) return vim.tbl_keys(M.lang) end,
-})
-
 return M
