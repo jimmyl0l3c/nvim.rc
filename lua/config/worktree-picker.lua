@@ -44,6 +44,8 @@ local M = {
             end
         end
 
+        local current_worktree = git_worktree.get_current_worktree_path()
+
         local items = {}
         for idx, worktree in ipairs(worktrees) do
             ---@type snacks.picker.finder.Item
@@ -52,6 +54,7 @@ local M = {
                 text = Snacks.picker.util.text(worktree, { "branch", "commit", "path" }),
                 item = worktree,
                 commit = worktree.commit,
+                current = current_worktree ~= nil and worktree.path == current_worktree,
             }
             table.insert(items, item)
         end
@@ -63,10 +66,10 @@ local M = {
     format = function(item, picker)
         local a = Snacks.picker.util.align
         local worktree = item.item
-        -- TODO: mark current worktree
 
         ---@type snacks.picker.Highlight[]
         local ret = {
+            item.current and { a("", 2), "SnacksPickerGitBranchCurrent" } or { a("", 2) },
             { a(worktree.branch, 20, { truncate = true }) },
             { " " },
             { picker.opts.icons.git.commit, "SnacksPickerGitCommit" },
