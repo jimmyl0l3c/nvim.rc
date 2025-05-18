@@ -151,6 +151,7 @@ return {
             desc = "Find files",
         },
         { "<C-p>", function() Snacks.picker.git_files() end, desc = "Find git files" },
+        { "<leader>pp", function() Snacks.picker() end, desc = "Select picker" },
         { "<leader>vh", function() Snacks.picker.help() end, desc = "Find help pages" },
         { "<leader>pc", function() Snacks.picker.git_log() end, desc = "Find git commits" },
         { "<leader>pb", function() Snacks.picker.git_branches() end, desc = "Find git branches" },
@@ -189,6 +190,12 @@ return {
                 Snacks.toggle.profiler():map("<leader>Pp")
                 -- Toggle the profiler highlights
                 Snacks.toggle.profiler_highlights():map("<leader>Ph")
+
+                vim.api.nvim_create_user_command(
+                    "NotifyHistory",
+                    function(_) Snacks.notifier.show_history() end,
+                    { desc = "Show notifications history" }
+                )
             end,
         })
     end,
