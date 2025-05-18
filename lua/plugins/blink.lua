@@ -58,7 +58,7 @@ return {
                     lua = {
                         inherit_defaults = true,
                         "lazydev",
-                        "nerdfont",
+                        -- "nerdfont",
                     },
                     markdown = {
                         inherit_defaults = true,

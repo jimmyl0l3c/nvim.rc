@@ -153,6 +153,7 @@ return {
         { "<C-p>", function() Snacks.picker.git_files() end, desc = "Find git files" },
         { "<leader>pp", function() Snacks.picker() end, desc = "Select picker" },
         { "<leader>vh", function() Snacks.picker.help() end, desc = "Find help pages" },
+        { "<leader>vg", function() require("config.worktree-picker").git_worktrees() end, desc = "Git worktrees" },
         { "<leader>pc", function() Snacks.picker.git_log() end, desc = "Find git commits" },
         { "<leader>pb", function() Snacks.picker.git_branches() end, desc = "Find git branches" },
         {
