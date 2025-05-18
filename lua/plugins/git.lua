@@ -86,6 +86,11 @@ return {
     {
         "ThePrimeagen/git-worktree.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function() require("git-worktree").setup() end,
+        config = function()
+            require("git-worktree").setup()
+            -- TODO: switch oil dir if current buffer is oil when switching worktree
+
+            Snacks.picker.sources.worktrees = require("config.worktree-picker")
+        end,
     },
 }
