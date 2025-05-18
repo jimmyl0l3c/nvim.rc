@@ -106,7 +106,7 @@ return {
                 end
             end)
 
-            Snacks.picker.sources.worktrees = require("config.worktree-picker")
+            Snacks.picker.sources.worktrees = require("config.worktree_picker")
         end,
     },
 }
