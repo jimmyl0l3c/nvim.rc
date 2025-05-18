@@ -13,9 +13,10 @@ end
 local M = {
     enabled = true,
     title = "Git worktrees",
+    preview = "git_log",
+
     layout = {
         preset = "default",
-        preview = false,
     },
 
     ---@type snacks.picker.win.Config
@@ -50,6 +51,7 @@ local M = {
                 idx = idx,
                 text = Snacks.picker.util.text(worktree, { "branch", "commit", "path" }),
                 item = worktree,
+                commit = worktree.commit,
             }
             table.insert(items, item)
         end
