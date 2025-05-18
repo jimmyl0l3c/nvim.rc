@@ -14,6 +14,7 @@ local M = {
     win = {
         input = {
             keys = {
+                ["<c-n>"] = { "create", mode = { "i", "n" } },
                 ["<c-x>"] = { "delete", mode = { "i", "n" } },
             },
         },
@@ -92,9 +93,20 @@ local M = {
             return picker:norm(function()
                 picker:close()
 
+                -- TODO: handle deleting current worktree
+
                 local worktree_dir = get_worktree_dir(item)
                 vim.notify("Deleting worktree: " .. worktree_dir)
                 git_worktree.delete_worktree(worktree_dir)
+            end)
+        end,
+        create = function(picker, _)
+            return picker:norm(function()
+                picker:close()
+
+                local new_worktree = picker.finder.filter.pattern
+                vim.notify("Creating new: " .. new_worktree)
+                git_worktree.create_worktree(new_worktree, new_worktree)
             end)
         end,
     },

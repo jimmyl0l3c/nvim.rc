@@ -87,8 +87,24 @@ return {
         "ThePrimeagen/git-worktree.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            require("git-worktree").setup()
-            -- TODO: switch oil dir if current buffer is oil when switching worktree
+            local worktree = require("git-worktree")
+            worktree.setup()
+
+            worktree.on_tree_change(function(op, metadata)
+                if op == worktree.Operations.Switch and vim.bo.filetype == "oil" then
+                    local oil = require("oil")
+
+                    local current_dir = oil.get_current_dir(vim.api.nvim_get_current_buf())
+                    local path_offset = #metadata.prev_path + 2
+
+                    if current_dir == nil or #current_dir < path_offset then
+                        oil.open(".")
+                        return
+                    end
+
+                    oil.open(current_dir:sub(path_offset))
+                end
+            end)
 
             Snacks.picker.sources.worktrees = require("config.worktree-picker")
         end,
