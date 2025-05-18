@@ -71,6 +71,10 @@ return {
                         inherit_defaults = true,
                         "nerdfont",
                     },
+                    sql = {
+                        inherit_defaults = true,
+                        "dadbod",
+                    },
                 },
                 providers = {
                     lazydev = {
@@ -104,6 +108,11 @@ return {
                     obsidian_tags = {
                         name = "obsidian_tags",
                         module = "blink.compat.source",
+                    },
+
+                    dadbod = {
+                        name = "Dadbod",
+                        module = "vim_dadbod_completion.blink",
                     },
                 },
             },
