@@ -2,6 +2,14 @@ local git_worktree = require("git-worktree")
 
 local function get_worktree_dir(item) return vim.fn.fnamemodify(item.item.path, ":t") end
 
+local function get_current_worktree()
+    local current_worktree = git_worktree.get_current_worktree_path()
+
+    if current_worktree == nil then return nil end
+
+    return vim.fn.fnamemodify(current_worktree, ":t")
+end
+
 local M = {
     enabled = true,
     title = "Git worktrees",
@@ -93,11 +101,16 @@ local M = {
             return picker:norm(function()
                 picker:close()
 
-                -- TODO: handle deleting current worktree
+                local current_worktree = get_current_worktree()
+                local selected_worktree = get_worktree_dir(item)
 
-                local worktree_dir = get_worktree_dir(item)
-                vim.notify("Deleting worktree: " .. worktree_dir)
-                git_worktree.delete_worktree(worktree_dir)
+                if selected_worktree == current_worktree then
+                    vim.notify("Cannot delete current worktree", vim.log.levels.ERROR)
+                    return
+                end
+
+                vim.notify("Deleting worktree: " .. selected_worktree)
+                git_worktree.delete_worktree(selected_worktree)
             end)
         end,
         create = function(picker, _)
