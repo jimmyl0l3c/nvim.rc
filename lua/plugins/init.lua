@@ -5,7 +5,10 @@ return {
         keys = { { "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>" } },
     },
 
-    { "theprimeagen/vim-be-good", cmd = "VimBeGood" },
+    {
+        "theprimeagen/vim-be-good",
+        cmd = "VimBeGood",
+    },
 
     {
         "folke/todo-comments.nvim",
@@ -26,6 +29,13 @@ return {
 
     {
         "echasnovski/mini.surround",
+        version = "*",
+        event = { "BufReadPre", "BufNewFile" },
+        opts = {},
+    },
+
+    {
+        "echasnovski/mini.splitjoin",
         version = "*",
         event = { "BufReadPre", "BufNewFile" },
         opts = {},
