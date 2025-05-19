@@ -2,14 +2,6 @@ local git_worktree = require("git-worktree")
 
 local function get_worktree_dir(item) return vim.fn.fnamemodify(item.item.path, ":t") end
 
-local function get_current_worktree()
-    local current_worktree = git_worktree.get_current_worktree_path()
-
-    if current_worktree == nil then return nil end
-
-    return vim.fn.fnamemodify(current_worktree, ":t")
-end
-
 local M = {
     enabled = true,
     title = "Git worktrees",
@@ -32,12 +24,14 @@ local M = {
     ---@type snacks.picker.finder
     finder = function()
         local result = vim.system({ "git", "worktree", "list" }, { cwd = git_worktree.get_root() }):wait()
+
         if result.code ~= 0 then
             vim.notify("Git command failed: " .. result.stderr, vim.log.levels.ERROR)
             return {}
         end
 
         local worktrees = {}
+
         for line in result.stdout:gmatch("[^\r\n]+") do
             for path, commit, branch in line:gmatch("(.-)%s+(%w+)%s+(%b[])") do
                 table.insert(worktrees, { path = path, commit = commit, branch = branch })
@@ -92,9 +86,8 @@ local M = {
                 picker:close()
 
                 if item ~= nil then
-                    local worktree_dir = get_worktree_dir(item)
-                    vim.notify("Switching worktree: " .. worktree_dir)
-                    git_worktree.switch_worktree(worktree_dir)
+                    vim.notify("Switching worktree: " .. get_worktree_dir(item))
+                    git_worktree.switch_worktree(item.item.path)
                 else
                     local new_worktree = picker.finder.filter.pattern
                     vim.notify("Creating worktree: " .. new_worktree)
@@ -106,16 +99,13 @@ local M = {
             return picker:norm(function()
                 picker:close()
 
-                local current_worktree = get_current_worktree()
-                local selected_worktree = get_worktree_dir(item)
-
-                if selected_worktree == current_worktree then
+                if item.item.path == git_worktree.get_current_worktree_path() then
                     vim.notify("Cannot delete current worktree", vim.log.levels.ERROR)
                     return
                 end
 
-                vim.notify("Deleting worktree: " .. selected_worktree)
-                git_worktree.delete_worktree(selected_worktree)
+                vim.notify("Deleting worktree: " .. get_worktree_dir(item))
+                git_worktree.delete_worktree(item.item.path)
             end)
         end,
         create = function(picker, _)
