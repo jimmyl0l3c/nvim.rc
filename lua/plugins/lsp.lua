@@ -1,10 +1,12 @@
 return {
     "neovim/nvim-lspconfig",
+    version = "*",
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "artemave/workspace-diagnostics.nvim",
         "elkowar/yuck.vim",
+        "rhaiscript/vim-rhai",
         "j-hui/fidget.nvim",
     },
 
