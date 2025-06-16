@@ -9,7 +9,7 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
-        completions = { lsp = { enabled = true } },
+        completions = { blink = { enabled = true } },
         checkbox = {
             unchecked = { icon = "󰄱" },
             checked = { icon = "", scope_highlight = "@markup.strikethrough" },
