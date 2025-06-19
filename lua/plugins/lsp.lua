@@ -5,9 +5,11 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "artemave/workspace-diagnostics.nvim",
+        "j-hui/fidget.nvim",
+
+        -- additional language support
         "elkowar/yuck.vim",
         "rhaiscript/vim-rhai",
-        "j-hui/fidget.nvim",
     },
 
     config = function()
