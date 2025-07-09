@@ -6,7 +6,7 @@ os.setlocale("C")
 return {
     -- "epwalsh/obsidian.nvim",
     "obsidian-nvim/obsidian.nvim",
-    -- version = "*",
+    version = "*",
     lazy = true,
     -- ft = "markdown",
     event = {
@@ -15,7 +15,7 @@ return {
     },
     cmd = { "Obsidian" },
     keys = {
-        { "<leader>po", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian quick switch" },
+        { "<leader>po", "<cmd>Obsidian quick_switch<CR>", desc = "Obsidian quick switch" },
         -- TODO: add keybind for yesterday, today, tomorrow or just ObsidianDailies?
         -- TODO: add keybind to paste image
     },
