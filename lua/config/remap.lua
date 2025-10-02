@@ -43,3 +43,6 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space><space>l", "<cmd>:.lua<CR>")
 vim.keymap.set("v", "<space><space>l", "<cmd>:'<,'>lua<CR>")
+
+-- Exit terminal with escape
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
