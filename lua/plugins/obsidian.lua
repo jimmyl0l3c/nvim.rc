@@ -38,6 +38,9 @@ return {
             },
         },
 
+        -- NOTE: obsidian.nvim currently does not support blink source definitions that are not a list
+        completion = { blink = false },
+
         daily_notes = {
             folder = "daily",
             date_format = "%Y-%m-%d-%a",
