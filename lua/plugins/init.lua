@@ -40,4 +40,9 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         opts = {},
     },
+
+    {
+        "brenoprata10/nvim-highlight-colors",
+        opts = { render = "virtual" },
+    },
 }
