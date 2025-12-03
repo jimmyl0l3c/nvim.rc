@@ -43,6 +43,10 @@ return {
 
     {
         "brenoprata10/nvim-highlight-colors",
-        opts = { render = "virtual" },
+        opts = {
+            render = "virtual",
+            exclude_filetypes = { "lazy" },
+            -- exclude_buftypes = { "nofile" },
+        },
     },
 }
