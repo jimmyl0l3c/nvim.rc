@@ -24,6 +24,7 @@ return {
 
                     SnacksPickerBorder = { fg = "highlight_high", bg = "none" },
                     FloatTitle = { bg = "none" },
+                    FloatBorder = { fg = "highlight_high", bg = "none" },
                 },
             })
 
