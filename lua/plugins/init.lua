@@ -49,4 +49,16 @@ return {
             -- exclude_buftypes = { "nofile" },
         },
     },
+
+    {
+        "nvzone/showkeys",
+        cmd = "ShowkeysToggle",
+        opts = {
+            timeout = 1,
+            maxkeys = 10,
+            show_count = true,
+            position = "bottom-center",
+            excluded_modes = { "i" },
+        },
+    },
 }
