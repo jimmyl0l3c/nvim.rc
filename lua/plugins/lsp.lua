@@ -39,7 +39,7 @@ return {
         end
 
         -- Enable language servers installed manually
-        vim.lsp.enable({ "phpactor", "csharp_ls" })
+        vim.lsp.enable({ "phpactor", "csharp_ls", "django-ls" })
 
         -- Enable SetupLsp command
         local lsp_setup = require("lsp_setup")
