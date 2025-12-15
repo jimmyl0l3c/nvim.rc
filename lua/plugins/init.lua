@@ -51,7 +51,10 @@ return {
     },
 
     {
-        "nvzone/showkeys",
+        -- "nvzone/showkeys",
+        "jimmyl0l3c/showkeys",
+        branch = "fix-op-pending",
+        -- dir = "~/repos/showkeys",
         cmd = "ShowkeysToggle",
         opts = {
             timeout = 1,
