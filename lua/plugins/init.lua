@@ -64,4 +64,12 @@ return {
             excluded_modes = { "i" },
         },
     },
+
+    {
+        "jimmyl0l3c/backlog.nvim",
+        dependencies = { "ColinKennedy/mega.cmdparse", "ColinKennedy/mega.logging" },
+        dir = "~/repos/backlog.nvim",
+        cmd = "Backlog",
+        opts = {},
+    },
 }
