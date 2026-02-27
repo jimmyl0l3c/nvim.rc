@@ -14,6 +14,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
+        "phelipetls/vim-hugo",
     },
     build = ":TSUpdate",
     config = function()
@@ -67,18 +68,14 @@ return {
         vim.api.nvim_create_autocmd("BufRead", {
             pattern = { "*/templates/*.yaml" },
             callback = function()
-                if is_in_helm_template() then
-                    vim.bo.filetype = "helm"
-                end
+                if is_in_helm_template() then vim.bo.filetype = "helm" end
             end,
         })
         -- jenkinsfiles without suffix
         vim.api.nvim_create_autocmd("BufRead", {
             pattern = { "*/jenkinsfiles/*" },
             callback = function()
-                if vim.bo.filetype == "" then
-                    vim.bo.filetype = "groovy"
-                end
+                if vim.bo.filetype == "" then vim.bo.filetype = "groovy" end
             end,
         })
 
