@@ -71,6 +71,7 @@ return {
         dir = "~/repos/backlog.nvim",
         dev = true,
         cmd = "Backlog",
+        keys = { { "<leader>pt", "<cmd>Backlog open -d<CR>" } },
         opts = {},
     },
 }
