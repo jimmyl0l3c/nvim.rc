@@ -73,7 +73,7 @@ return {
         })
         -- jenkinsfiles without suffix
         vim.api.nvim_create_autocmd("BufRead", {
-            pattern = { "*/jenkinsfiles/*" },
+            pattern = { "*/jenkinsfiles/*", "*/Jenkinsfiles/*", "*/*jenkins_library*/*/jobs/*" },
             callback = function()
                 if vim.bo.filetype == "" then vim.bo.filetype = "groovy" end
             end,
