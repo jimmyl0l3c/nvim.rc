@@ -26,6 +26,16 @@ return {
 
         ts.install({ "vimdoc", "lua", "bash", "markdown", "markdown_inline" })
 
+        vim.api.nvim_create_autocmd("FileType", {
+            -- pattern = { "rust", "javascript", "zig" },
+            callback = function()
+                pcall(function()
+                    vim.treesitter.start()
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end)
+            end,
+        })
+
         -- gotmpl
         vim.treesitter.query.add_directive("inject-go-tmpl!", function(_, _, bufnr, _, metadata)
             local fname = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
