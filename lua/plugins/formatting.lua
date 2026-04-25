@@ -29,7 +29,7 @@ return {
         -- Define your formatters
         formatters_by_ft = {
             lua = { "stylua" },
-            go = { "goimports", "gofmt" },
+            go = { "goimports", "gofmt", stop_after_first = true },
             -- svelte = { { "prettierd", "prettier" } },
             javascript = { "prettierd" },
             typescript = { "prettierd" },
@@ -62,6 +62,13 @@ return {
                     "--config-path",
                     vim.fn.stdpath("config") .. "/ls_configs/stylua.toml",
                 },
+            },
+            goimports = {
+                prepend_args = function(self, ctx)
+                    local mod = vim.fn.trim(vim.fn.system("go list -m"))
+                    if vim.v.shell_error ~= 0 or not mod or mod == "" then return {} end
+                    return { "-local", mod }
+                end,
             },
         },
     },
