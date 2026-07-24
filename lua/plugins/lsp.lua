@@ -10,6 +10,7 @@ return {
         -- additional language support
         "elkowar/yuck.vim",
         "rhaiscript/vim-rhai",
+        "immanuwell/droast.nvim",
     },
 
     config = function()
@@ -48,5 +49,16 @@ return {
             nargs = 1,
             complete = function(ArgLead, CmdLine, CursorPos) return vim.tbl_keys(lsp_setup.lang) end,
         })
+
+        vim.api.nvim_create_user_command(
+            "HideDiagnostics",
+            function(opts) vim.diagnostic.config({ virtual_text = false, virtual_lines = false }) end,
+            { desc = "Disable virtual text to hide diagnostics." }
+        )
+        vim.api.nvim_create_user_command(
+            "ShowDiagnostics",
+            function(opts) vim.diagnostic.config({ virtual_text = true, virtual_lines = false }) end,
+            { desc = "Enable virtual text to show diagnostics." }
+        )
     end,
 }

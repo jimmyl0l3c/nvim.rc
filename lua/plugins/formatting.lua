@@ -70,6 +70,11 @@ return {
                     return { "-local", mod }
                 end,
             },
+            prettierd = {
+                env = {
+                    PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/ls_configs/.prettierrc.json",
+                },
+            },
         },
     },
 }
