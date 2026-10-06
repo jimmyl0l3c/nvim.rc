@@ -98,7 +98,7 @@ autocmd("LspAttach", {
                 filter = function(x) return x.kind == "source.organizeImports.ruff" end,
             })
         end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts) -- TODO: remove in favor of <C-s>?
+        vim.keymap.set("i", "<C-h>", function() replaced_keybind("<C-s>", "signature_help") end, opts)
 
         vim.keymap.set("n", "<leader>vi", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
         vim.keymap.set("n", "<leader>vt", function()

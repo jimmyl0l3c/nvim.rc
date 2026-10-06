@@ -29,7 +29,7 @@
 
 ## Insert
 
-- `<C-h>`/`<C-s>` - signature help
+- `<C-s>` - signature help
 
 ## Visual
 
