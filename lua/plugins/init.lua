@@ -68,8 +68,8 @@ return {
     {
         "jimmyl0l3c/backlog.nvim",
         dependencies = { "ColinKennedy/mega.cmdparse", "ColinKennedy/mega.logging" },
-        dir = "~/repos/backlog.nvim",
-        dev = true,
+        -- dir = "~/repos/backlog.nvim",
+        -- dev = true,
         cmd = "Backlog",
         keys = { { "<leader>pt", "<cmd>Backlog open -d<CR>" } },
         opts = {},

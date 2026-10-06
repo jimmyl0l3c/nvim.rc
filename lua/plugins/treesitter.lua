@@ -51,7 +51,7 @@ return {
 
         -- helm templates
         vim.api.nvim_create_autocmd("BufRead", {
-            pattern = { "*/templates/*.yaml" },
+            pattern = { "*/templates/*.yaml", "*/templates/*.tpl" },
             callback = function()
                 if is_in_helm_template() then vim.bo.filetype = "helm" end
             end,
