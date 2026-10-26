@@ -63,9 +63,6 @@ return {
                     markdown = {
                         inherit_defaults = true,
                         "emoji",
-                        "obsidian",
-                        "obsidian_new",
-                        "obsidian_tags",
                     },
                     yuck = {
                         inherit_defaults = true,
@@ -96,19 +93,6 @@ return {
                         name = "Nerd Fonts",
                         score_offset = 15, -- Tune by preference
                         opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
-                    },
-
-                    obsidian = {
-                        name = "obsidian",
-                        module = "blink.compat.source",
-                    },
-                    obsidian_new = {
-                        name = "obsidian_new",
-                        module = "blink.compat.source",
-                    },
-                    obsidian_tags = {
-                        name = "obsidian_tags",
-                        module = "blink.compat.source",
                     },
 
                     dadbod = {
